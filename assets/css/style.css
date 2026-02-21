@@ -7,8 +7,15 @@
     --glass-bg: rgba(255, 255, 255, 0.2);
     --glass-border: rgba(255, 255, 255, 0.3);
     --font-heading: 'Playfair Display', serif;
+    --font-title: 'Valley Personal Use', cursive;
     --font-body: 'Inter', sans-serif;
 }
+
+@font-face {
+    font-family: 'Valley Personal Use';
+    src: url('../fonts/Valley Personal Use.TTF') format('truetype');
+}
+
 
 * {
     margin: 0;
@@ -100,14 +107,21 @@ body {
 }
 
 .overlay-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 60px 20px;
     text-align: center;
     color: white;
 }
 
 .overlay-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    margin-bottom: 5px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
 }
 
 .overlay-content h4 {
@@ -115,20 +129,35 @@ body {
     margin-bottom: 10px;
     color: var(--secondary-color);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.top-content {
+    margin-top: 20px;
+}
+
+.bottom-content {
+    margin-bottom: 20px;
 }
 
 .recipient {
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 .recipient p {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    font-size: 0.95rem;
 }
 
 .error-note {
-    font-size: 0.8rem;
-    margin: 20px 0;
+    font-size: 0.75rem;
+    margin: 10px 0;
     opacity: 0.8;
+    line-height: 1.2;
+}
+
+.btn-primary {
+    margin-top: 10px;
 }
 
 /* Hero Section */
@@ -314,7 +343,11 @@ body {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .overlay-content h1 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
+    }
+
+    .overlay-content {
+        padding: 40px 10px;
     }
 
     .overlay-content h4 {
