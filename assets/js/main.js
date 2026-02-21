@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('to');
     if (guestName) {
-        document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
+        const guestEl = document.getElementById('guest-name');
+        if (guestEl) {
+            guestEl.innerText = decodeURIComponent(guestName);
+        }
     }
 });

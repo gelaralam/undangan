@@ -9,7 +9,11 @@ export const initMusic = () => {
             audio.pause();
             icon.innerText = '🔇';
         } else {
-            audio.play();
+            audio.play().catch(err => {
+                console.warn("Autoplay was prevented or audio failed:", err);
+                isPlaying = false;
+                icon.innerText = '🔇';
+            });
             icon.innerText = '🎵';
         }
         isPlaying = !isPlaying;
