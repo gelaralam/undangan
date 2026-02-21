@@ -111,25 +111,31 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: 60px 20px;
+    padding: 60px 40px;
     text-align: center;
     color: white;
 }
 
 .overlay-content h1 {
     font-family: var(--font-title);
-    font-size: 3.5rem;
-    margin-bottom: 5px;
+    font-size: 2.8rem;
+    margin-bottom: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
 }
 
 .overlay-content h4 {
-    letter-spacing: 5px;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
     color: var(--secondary-color);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
+}
+
+.top-content p {
+    font-size: 0.85rem;
+    line-height: 1.2;
 }
 
 .top-content {
@@ -141,23 +147,25 @@ body {
 }
 
 .recipient {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .recipient p {
-    margin-bottom: 2px;
-    font-size: 0.95rem;
+    margin-bottom: 1px;
+    font-size: 0.85rem;
 }
 
 .error-note {
-    font-size: 0.75rem;
-    margin: 10px 0;
+    font-size: 0.7rem;
+    margin: 8px 0;
     opacity: 0.8;
     line-height: 1.2;
 }
 
 .btn-primary {
-    margin-top: 10px;
+    margin-top: 5px;
+    padding: 10px 25px;
+    font-size: 0.9rem;
 }
 
 /* Hero Section */
@@ -343,16 +351,20 @@ body {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .overlay-content h1 {
-        font-size: 2.2rem;
+        font-size: 1.7rem;
     }
 
     .overlay-content {
-        padding: 40px 10px;
+        padding: 60px 30px;
     }
 
     .overlay-content h4 {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         letter-spacing: 3px;
+    }
+
+    .top-content p {
+        font-size: 0.75rem;
     }
 
     .hero-content h1 {
