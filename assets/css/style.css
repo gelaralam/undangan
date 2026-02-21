@@ -290,3 +290,62 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .overlay-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .glass-card {
+        padding: 20px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timer {
+        gap: 8px;
+    }
+
+    .timer-item {
+        min-width: 60px;
+    }
+
+    .timer-item span {
+        font-size: 1.5rem;
+    }
+
+    .photo-frame {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .timer-item {
+        min-width: 50px;
+    }
+
+    .timer-item span {
+        font-size: 1.2rem;
+    }
+}
