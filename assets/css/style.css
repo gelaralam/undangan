@@ -102,13 +102,31 @@ body {
     color: white;
 }
 
-.overlay-content h2 {
+.overlay-content h1 {
     font-size: 2.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-content h4 {
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .recipient {
-    margin-bottom: 30px;
+    margin: 30px 0;
+}
+
+.recipient p {
+    margin-bottom: 5px;
+}
+
+.error-note {
+    font-size: 0.8rem;
+    margin: 20px 0;
+    opacity: 0.8;
 }
 
 /* Hero Section */
@@ -293,8 +311,13 @@ body {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    .overlay-content h2 {
+    .overlay-content h1 {
         font-size: 1.8rem;
+    }
+
+    .overlay-content h4 {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
     }
 
     .hero-content h1 {
