@@ -118,7 +118,7 @@ body {
 
 .overlay-content h1 {
     font-family: var(--font-title);
-    font-size: 2.8rem;
+    font-size: 3.1rem;
     margin-bottom: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
@@ -127,11 +127,12 @@ body {
 .overlay-content h4 {
     font-size: 0.85rem;
     letter-spacing: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     color: var(--secondary-color);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
 }
+
 
 .top-content p {
     font-size: 0.85rem;
@@ -351,8 +352,9 @@ body {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .overlay-content h1 {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
     }
+
 
     .overlay-content {
         padding: 60px 30px;
