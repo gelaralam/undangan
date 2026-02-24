@@ -630,13 +630,16 @@ body {
 
 .rsvp-title {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    /* Reduced from 10px */
     color: #001b34 !important;
     /* Theme Blue */
     text-align: center !important;
     display: block !important;
     width: 100% !important;
     font-size: 1.8rem;
+    line-height: 1.1;
+    /* Tighter line height for 2 lines */
 }
 
 .rsvp-section .form-group {
