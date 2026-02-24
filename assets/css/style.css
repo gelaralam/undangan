@@ -207,16 +207,16 @@ body {
     background-size: cover;
     background-position: center;
     z-index: -1;
-    animation: zoom 20s infinite alternate;
+    animation: zoom-settle 10s ease-out forwards;
 }
 
-@keyframes zoom {
+@keyframes zoom-settle {
     from {
-        transform: scale(1);
+        transform: scale(1.1);
     }
 
     to {
-        transform: scale(1.1);
+        transform: scale(1);
     }
 }
 
