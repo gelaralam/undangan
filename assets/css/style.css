@@ -143,8 +143,8 @@ body {
 
 .bottom-content {
     position: absolute;
-    bottom: 25px;
-    /* Pin as low as possible */
+    bottom: 60px;
+    /* Raised slightly for breathing room */
     left: 0;
     right: 0;
     padding: 0 20px;
