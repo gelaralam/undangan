@@ -16,10 +16,10 @@ const initCountdown = (targetDate) => {
 
         countdownEl.innerHTML = `
             <div class="timer">
-                <div class="timer-item"><span>${days}</span>Hari</div>
-                <div class="timer-item"><span>${hours}</span>Jam</div>
-                <div class="timer-item"><span>${minutes}</span>Menit</div>
-                <div class="timer-item"><span>${seconds}</span>Detik</div>
+                <div class="timer-item"><span>${days}</span><div class="timer-item-label">Hari</div></div>
+                <div class="timer-item"><span>${hours}</span><div class="timer-item-label">Jam</div></div>
+                <div class="timer-item"><span>${minutes}</span><div class="timer-item-label">Menit</div></div>
+                <div class="timer-item"><span>${seconds}</span><div class="timer-item-label">Detik</div></div>
             </div>
         `;
 
