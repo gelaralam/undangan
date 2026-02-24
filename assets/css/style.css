@@ -378,7 +378,7 @@ body {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: 40px !important;
+        padding-top: 55dvh !important;
     }
 
     .overlay-content h1 {
