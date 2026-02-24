@@ -144,7 +144,7 @@ const initAnimations = () => {
                     items.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.add('animated');
-                        }, index * 50); // Reduced delay to 50ms for faster appearance
+                        }, index * 30); // Further reduced delay to 30ms for even faster appearance
                     });
                     observer.unobserve(entry.target);
                 } else {
