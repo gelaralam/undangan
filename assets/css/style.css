@@ -226,18 +226,8 @@ body {
     background-size: cover;
     background-position: center top;
     z-index: -1;
-    animation: zoom-settle 10s ease-out forwards;
 }
 
-@keyframes zoom-settle {
-    from {
-        transform: scale(1.1);
-    }
-
-    to {
-        transform: scale(1);
-    }
-}
 
 .hero-content h1 {
     font-family: var(--font-title);
@@ -397,8 +387,8 @@ body {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: 65dvh !important;
-        /* Slightly more space for the 1:1 centered image */
+        padding-top: 60dvh !important;
+        /* Balanced for static view */
     }
 
     .hero-bg {
