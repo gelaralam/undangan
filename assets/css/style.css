@@ -280,8 +280,8 @@ body {
 /* Countdown Overlay on Profile */
 .countdown-overlay {
     position: absolute;
-    bottom: 5%;
-    /* Slightly lower for better integration */
+    bottom: 12%;
+    /* Positioned slightly higher on the photo */
     left: 0;
     width: 100%;
     display: flex;
