@@ -144,7 +144,7 @@ const initAnimations = () => {
                     items.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.add('animated');
-                        }, index * 100); // 100ms delay between each photo
+                        }, index * 50); // Reduced delay to 50ms for faster appearance
                     });
                     observer.unobserve(entry.target);
                 } else {
