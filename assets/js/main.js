@@ -62,7 +62,74 @@ const initMusic = () => {
     return { toggleMusic };
 };
 
-// Animations Module
+// Lightbox Module
+const initLightbox = () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const prevBtn = document.querySelector('.lightbox-nav .prev');
+    const nextBtn = document.querySelector('.lightbox-nav .next');
+
+    let currentIndex = 0;
+
+    if (!lightbox || !lightboxImg || !lightboxClose) return;
+
+    const openLightbox = (index) => {
+        currentIndex = index;
+        const imgSrc = galleryItems[currentIndex].querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightbox.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    };
+
+    const closeLightbox = () => {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    const showNext = () => {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        lightboxImg.src = galleryItems[currentIndex].querySelector('img').src;
+    };
+
+    const showPrev = () => {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        lightboxImg.src = galleryItems[currentIndex].querySelector('img').src;
+    };
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    // Close on click outside image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPrev();
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showNext();
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'block') {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        }
+    });
+};
+
+// Enhanced Animations Module
 const initAnimations = () => {
     const observerOptions = {
         threshold: 0.1
@@ -71,12 +138,23 @@ const initAnimations = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                if (entry.target.classList.contains('gallery-grid')) {
+                    // Sequenced animation for gallery items
+                    const items = entry.target.querySelectorAll('.gallery-item');
+                    items.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('animated');
+                        }, index * 100); // 100ms delay between each photo
+                    });
+                    observer.unobserve(entry.target);
+                } else {
+                    entry.target.classList.add('visible');
+                }
             }
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.hero-content *, .glass-card, .event-card, .fade-up');
+    const animatedElements = document.querySelectorAll('.hero-content *, .glass-card, .event-card, .fade-up, .gallery-grid');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
@@ -95,21 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle button even if mainContent or overlay are slightly different
     if (openBtn && overlay && mainContent) {
         openBtn.addEventListener('click', () => {
-            console.log("Button clicked!"); // Debug log
             overlay.classList.add('open');
             mainContent.classList.remove('hidden');
 
-            // Interaction might be needed for music
             if (music && music.toggleMusic) {
                 music.toggleMusic();
             }
 
-            // Init Countdown
+            // Init Components
             const targetDate = new Date("April 11, 2026 10:00:00 GMT+0700").getTime();
             initCountdown(targetDate);
-
-            // Init Animations
             initAnimations();
+            initLightbox();
 
             // Bottom Nav Interaction
             document.querySelectorAll('.nav-item').forEach(link => {
@@ -135,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // nav QR (placeholder)
+            // nav QR
             const navQR = document.getElementById('nav-qr');
             if (navQR) {
                 navQR.addEventListener('click', () => {
@@ -143,8 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-    } else {
-        console.error("Missing critical elements:", { openBtn, overlay, mainContent });
     }
 
     // Extract guest name from URL if present
