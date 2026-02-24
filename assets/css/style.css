@@ -188,7 +188,6 @@ body {
 .hero {
     min-height: 100dvh;
     padding: 60dvh 0 80px;
-    /* sit below the face area */
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -196,8 +195,8 @@ body {
     color: white;
     text-align: center;
     overflow: hidden;
-    background: transparent !important;
-    /* Forces removal of any fallback color */
+    background-color: #06122d !important;
+    /* Solid dark blue matching common photo tones */
 }
 
 /* Blurred bars pseudo-element removed */
@@ -208,9 +207,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/main-bg.jpg') !important;
+    background-image:
+        linear-gradient(to bottom, rgba(6, 18, 45, 0) 0%, rgba(6, 18, 45, 0.4) 40%, rgba(6, 18, 45, 0.9) 75%, rgba(6, 18, 45, 1) 100%),
+        url('../images/main-bg.jpg') !important;
     background-size: 100% auto !important;
-    /* Ensure image is uncropped (width-wise) */
     background-position: top center !important;
     background-repeat: no-repeat !important;
     z-index: -1;
