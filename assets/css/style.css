@@ -207,7 +207,7 @@ body {
     height: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/main-bg.jpg');
     background-size: cover;
-    background-position: center 15%;
+    background-position: center top;
     /* Focus on the head/face area */
     z-index: -1;
     animation: zoom-settle 10s ease-out forwards;
@@ -381,14 +381,12 @@ body {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: calc(100vw + 20px) !important;
-        /* Start text exactly after the square image */
+        padding-top: 60dvh !important;
     }
 
     .hero-bg {
-        background-size: 100% auto !important;
-        background-position: top center !important;
-        transform-origin: top center;
+        background-size: cover !important;
+        background-position: center top !important;
     }
 
     .overlay-content h1 {
