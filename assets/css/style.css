@@ -629,29 +629,30 @@ body {
 }
 
 .rsvp-title {
-    margin-bottom: 15px;
-    /* Reduced from 20px */
+    margin-top: 0;
+    margin-bottom: 10px;
     color: #001b34 !important;
-    /* Force theme blue */
-    text-align: center;
-    width: 100%;
+    /* Theme Blue */
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+    font-size: 1.8rem;
 }
 
 .rsvp-section .form-group {
-    margin-bottom: 8px;
-    /* Reduced from 10px */
+    margin-bottom: 5px;
 }
 
 .rsvp-section input,
 .rsvp-section select,
 .rsvp-section textarea {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: white;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #333;
     outline: none;
 }
