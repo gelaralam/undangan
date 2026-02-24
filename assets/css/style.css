@@ -390,7 +390,7 @@ body {
     transform: translateX(-50%);
     width: 100%;
     max-width: 1080px;
-    height: 70px;
+    height: 60px;
     background-color: #c6ad85;
     /* Gold/Tan R:198 G:173 B:133 */
     z-index: 1001;
@@ -420,14 +420,14 @@ body {
 
 .nav-item svg {
     margin-bottom: 2px;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     stroke: #001b34;
     /* Blue icons as requested */
 }
 
 .nav-item span {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -439,7 +439,7 @@ body {
 
 /* Ensure content doesn't get hidden behind bottom nav */
 main {
-    padding-bottom: 70px;
+    padding-bottom: 60px;
 }
 
 /* --- Mobile Responsiveness --- */
