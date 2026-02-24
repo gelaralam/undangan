@@ -29,6 +29,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background: #fdfbfb;
+    -webkit-text-size-adjust: 100%;
+    /* Prevent font scaling in landscape on iOS */
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap highlight on mobile */
 }
 
 .playfair {
@@ -90,6 +94,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    height: 100dvh;
+    /* Handle mobile address bar */
     background-color: #333;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/hero-bg.jpg');
     background-size: cover;
@@ -180,7 +186,9 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
+    /* Handle mobile address bar */
     display: flex;
     align-items: center;
     /* Center the quote vertically now */
