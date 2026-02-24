@@ -219,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
 
                     const name = document.getElementById('rsvp-name').value;
-                    const phone = document.getElementById('rsvp-phone').value;
                     const message = document.getElementById('rsvp-message').value;
                     const presence = document.getElementById('rsvp-presence').value;
 
