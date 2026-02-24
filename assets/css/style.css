@@ -188,7 +188,6 @@ body {
 .hero {
     min-height: 100dvh;
     padding: 50dvh 0 80px;
-    /* sit below the image fade */
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -196,8 +195,8 @@ body {
     color: white;
     text-align: center;
     overflow: hidden;
-    background-color: #06122d;
-    /* Solid dark blue matching common photo tones */
+    background-color: #000;
+    /* Use black background for better blending */
 }
 
 /* Blurred bars pseudo-element removed */
@@ -209,7 +208,7 @@ body {
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(to bottom, rgba(6, 18, 45, 0) 20%, rgba(6, 18, 45, 0.8) 60%, rgba(6, 18, 45, 1) 95%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 1) 100%),
         url('../images/main-bg.jpg');
     background-size: 100% auto;
     background-position: top center;
