@@ -226,14 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const entry = document.createElement('div');
                     entry.className = 'rsvp-entry';
 
-                    const statusClass = presence.toLowerCase().replace(' ', '-');
+                    const statusClass = presence.toLowerCase().includes('tidak') ? 'tidak-hadir' : 'hadir';
 
                     entry.innerHTML = `
                         <div class="entry-header">
                             <span class="entry-name">${name}</span>
                             <span class="entry-status ${statusClass}">${presence}</span>
                         </div>
-                        <div class="entry-message">${message || 'Tidak ada ucapan.'}</div>
+                        <div class="entry-message">${(message || 'Tidak ada ucapan.').replace(/\n/g, '<br>')}</div>
                     `;
 
                     // Add to list (at the top)
@@ -242,8 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Reset form
                     rsvpForm.reset();
 
-                    // Optional: scroll to the new entry
-                    entry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    alert('Terima kasih! Konfirmasi Anda telah terkirim.');
                 });
             }
 
