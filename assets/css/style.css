@@ -360,8 +360,8 @@ body {
 
 /* Schedule Section */
 .schedule-section {
-    background: linear-gradient(rgba(0, 27, 52, 0.7), rgba(0, 27, 52, 0.7)), url('../images/event-bg.jpg') center top/cover;
-    background-attachment: fixed;
+    background: linear-gradient(rgba(0, 15, 30, 0.5), rgba(0, 15, 30, 0.5)), url('../images/event-bg.jpg') center top/cover;
+    background-repeat: no-repeat;
 }
 
 .schedule-header {
