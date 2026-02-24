@@ -391,20 +391,13 @@ body {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: 60dvh !important;
-        /* Balanced for static view */
+        padding-top: 45dvh !important;
+        /* Adjusted for mobile portrait crop */
     }
 
     .hero-bg {
-        background: none !important;
-        /* Remove CSS background */
-    }
-
-    .hero-bg img {
-        height: auto !important;
-        object-fit: contain !important;
-        /* Forces 1:1 uncropped view */
-        margin: 0 auto;
+        background-size: 100% auto !important;
+        background-position: top center !important;
     }
 
     .overlay-content h1 {
