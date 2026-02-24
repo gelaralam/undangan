@@ -358,6 +358,52 @@ body {
     }
 }
 
+/* Schedule Section */
+.schedule-section {
+    background: linear-gradient(rgba(0, 27, 52, 0.7), rgba(0, 27, 52, 0.7)), url('../images/event-bg.jpg') center top/cover;
+    background-attachment: fixed;
+}
+
+.schedule-header {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.schedule-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.schedule-item {
+    width: 100%;
+    max-width: 400px;
+}
+
+.schedule-label {
+    display: inline-block;
+    background-color: #c6ad85;
+    /* Tan color from nav */
+    color: #001b34;
+    padding: 6px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-item p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
 /* Gallery */
 .gallery-grid {
     display: grid;
