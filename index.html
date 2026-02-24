@@ -235,19 +235,19 @@
         <section id="rsvp" class="section rsvp-section">
             <div class="container">
                 <div class="rsvp-card">
-                    <h2 class="playfair text-center">Konfirmasi Kehadiran</h2>
+                    <h2 class="playfair text-center rsvp-title">Konfirmasi Kehadiran</h2>
                     <form id="rsvp-form">
                         <div class="form-group">
-                            <input type="text" id="name" required placeholder="Nama">
+                            <input type="text" id="rsvp-name" required placeholder="Nama">
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" placeholder="Nomor Handphone">
+                            <input type="tel" id="rsvp-phone" placeholder="Nomor Handphone">
                         </div>
                         <div class="form-group">
-                            <input type="number" id="guests" placeholder="Jumlah Tamu">
+                            <textarea id="rsvp-message" rows="3" placeholder="Ucapan dan Doa"></textarea>
                         </div>
                         <div class="form-group">
-                            <select id="presence">
+                            <select id="rsvp-presence" required>
                                 <option value="" disabled selected>Konfirmasi Kehadiran</option>
                                 <option value="Hadir">Hadir</option>
                                 <option value="Tidak Hadir">Tidak Hadir</option>
@@ -255,6 +255,14 @@
                         </div>
                         <button type="submit" class="btn-submit">Kirim</button>
                     </form>
+
+                    <!-- Submission Display area -->
+                    <div class="rsvp-submissions">
+                        <h3>Ucapan & Doa Tamu</h3>
+                        <div id="rsvp-list" class="rsvp-list">
+                            <!-- JS will populate -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -759,22 +759,26 @@ main {
 
     /* RSVP Section */
     .rsvp-section {
-        background-color: #f7efe6;
-        /* Cream/Beige background */
+        background-color: rgb(198, 173, 133);
+        /* New background color */
         padding: 60px 0;
+        color: #333;
     }
 
     .rsvp-card {
-        max-width: 500px;
+        max-width: 600px;
+        /* Slightly wider to accommodate submissions */
         margin: 0 auto;
-        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
     }
 
-    .rsvp-section h2 {
-        color: #444;
-        font-size: 2rem;
+    .rsvp-title {
+        white-space: nowrap;
+        /* Keep on one line */
         margin-bottom: 30px;
-        font-weight: 400;
     }
 
     .rsvp-section .form-group {
@@ -782,11 +786,12 @@ main {
     }
 
     .rsvp-section input,
-    .rsvp-section select {
+    .rsvp-section select,
+    .rsvp-section textarea {
         width: 100%;
         padding: 12px 15px;
         border-radius: 8px;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         background: white;
         font-family: inherit;
         font-size: 1rem;
@@ -794,7 +799,12 @@ main {
         outline: none;
     }
 
-    .rsvp-section input::placeholder {
+    .rsvp-section textarea {
+        resize: vertical;
+    }
+
+    .rsvp-section input::placeholder,
+    .rsvp-section textarea::placeholder {
         color: #777;
     }
 
@@ -809,7 +819,6 @@ main {
         width: 100%;
         padding: 15px;
         background-color: #a85863;
-        /* Maroon color from image */
         color: white;
         border: none;
         border-radius: 50px;
@@ -817,11 +826,82 @@ main {
         font-weight: 600;
         cursor: pointer;
         margin-top: 10px;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .btn-submit:hover {
         background-color: #8e4a54;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Submissions Display */
+    .rsvp-submissions {
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .rsvp-submissions h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .rsvp-list {
+        max-height: 400px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding-right: 5px;
+    }
+
+    .rsvp-entry {
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #a85863;
+    }
+
+    .rsvp-entry .entry-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    .rsvp-entry .entry-name {
+        font-weight: 700;
+        color: #a85863;
+    }
+
+    .rsvp-entry .entry-status {
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 20px;
+        background: #f0f0f0;
+    }
+
+    .rsvp-entry .entry-status.hadir {
+        background: #e6f4ea;
+        color: #1e7e34;
+    }
+
+    .rsvp-entry .entry-status.tidak-hadir {
+        background: #fdf2f2;
+        color: #d73a49;
+    }
+
+    .rsvp-entry .entry-message {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        font-style: italic;
+        color: #555;
     }
 
     @media (max-width: 768px) {

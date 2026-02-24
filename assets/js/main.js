@@ -210,6 +210,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            // RSVP logic
+            const rsvpForm = document.getElementById('rsvp-form');
+            const rsvpList = document.getElementById('rsvp-list');
+
+            if (rsvpForm && rsvpList) {
+                rsvpForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('rsvp-name').value;
+                    const phone = document.getElementById('rsvp-phone').value;
+                    const message = document.getElementById('rsvp-message').value;
+                    const presence = document.getElementById('rsvp-presence').value;
+
+                    // Create entry element
+                    const entry = document.createElement('div');
+                    entry.className = 'rsvp-entry';
+
+                    const statusClass = presence.toLowerCase().replace(' ', '-');
+
+                    entry.innerHTML = `
+                        <div class="entry-header">
+                            <span class="entry-name">${name}</span>
+                            <span class="entry-status ${statusClass}">${presence}</span>
+                        </div>
+                        <div class="entry-message">${message || 'Tidak ada ucapan.'}</div>
+                    `;
+
+                    // Add to list (at the top)
+                    rsvpList.insertBefore(entry, rsvpList.firstChild);
+
+                    // Reset form
+                    rsvpForm.reset();
+
+                    // Optional: scroll to the new entry
+                    entry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            }
+
             // nav QR
             const navQR = document.getElementById('nav-qr');
             if (navQR) {
