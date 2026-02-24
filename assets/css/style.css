@@ -767,6 +767,109 @@ body {
     word-break: break-word;
 }
 
+/* Gift Section */
+.gift-section {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    /* Soft blue/purple background */
+    padding: 80px 0;
+}
+
+.gift-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: #4a6fa5;
+    margin-bottom: 40px;
+}
+
+.gift-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.gift-card {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.gift-icon {
+    margin-bottom: 15px;
+}
+
+.gift-card h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 15px 0;
+}
+
+.gift-note {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.copy-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+}
+
+.copy-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.account-number,
+.shipping-address {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.shipping-address {
+    font-size: 0.9rem;
+}
+
+.btn-copy {
+    background: none;
+    border: none;
+    color: #c6ad85;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.btn-copy:hover {
+    transform: scale(1.1);
+}
+
+.account-holder {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 5px;
+}
+
 /* Animations */
 .fade-up {
     opacity: 0;

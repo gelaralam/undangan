@@ -1,3 +1,13 @@
+// --- Helpers ---
+const copyText = (elementId) => {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Teks berhasil disalin!');
+    }).catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+};
+
 // --- Modules ---
 
 // Countdown Module
