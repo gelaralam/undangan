@@ -109,9 +109,11 @@ body {
 .overlay-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    /* Align remaining content to bottom */
     height: 100%;
-    padding: 60px 40px;
+    padding: 40px 40px 80px;
+    /* Increase bottom padding to sit above ornaments */
     text-align: center;
     color: white;
 }
@@ -173,15 +175,13 @@ body {
 .hero {
     height: 100vh;
     display: flex;
-    align-items: flex-start;
-    /* Move content to top */
+    align-items: center;
+    /* Center the quote vertically now */
     justify-content: center;
     position: relative;
     color: white;
     text-align: center;
     overflow: hidden;
-    padding-top: 60px;
-    /* Space from top */
 }
 
 .hero-bg {
