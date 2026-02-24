@@ -767,107 +767,97 @@ body {
     word-break: break-word;
 }
 
-/* Gift Section */
-.gift-section {
-    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-    /* Soft blue/purple background */
-    padding: 80px 0;
+/* Gift Area (Relocated in Footer) */
+.gift-area {
+    margin-top: 50px;
+    margin-bottom: 60px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.gift-title {
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: #4a6fa5;
+.gift-category-v3 {
     margin-bottom: 40px;
 }
 
-.gift-container {
+.cat-header-v3 {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.gift-card {
-    background: white;
-    border-radius: 25px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.gift-icon {
+    align-items: center;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
-.gift-card h3 {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 10px;
+.cat-title-v3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fbc02d !important;
+    /* Golden Yellow */
+    margin: 0;
 }
 
-.divider {
-    height: 1px;
-    background: #eee;
-    margin: 15px 0;
+.cat-note-v3 {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    line-height: 1.4;
 }
 
-.gift-note {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
+.gift-item-v3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #fbc02d;
+    /* Golden Underline */
     margin-bottom: 20px;
 }
 
-.copy-box {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 12px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    border: 1px solid #eee;
+.gift-item-v3.no-border {
+    border-bottom: none;
 }
 
-.copy-info {
+.gift-info-v3 {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
+    flex-direction: column;
+    gap: 2px;
 }
 
-.account-number,
-.shipping-address {
+.gift-info-v3.horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-name-v3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.acc-num-v3 {
+    margin-left: 5px;
+}
+
+.holder-name-v3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.address-text-v3 {
+    font-size: 1.4rem;
     font-weight: 700;
-    font-size: 1.1rem;
-    color: #333;
 }
 
-.shipping-address {
-    font-size: 0.9rem;
-}
-
-.btn-copy {
+.btn-copy-v3 {
     background: none;
     border: none;
-    color: #c6ad85;
     cursor: pointer;
-    padding: 5px;
+    padding: 2px;
     transition: transform 0.2s;
 }
 
-.btn-copy:hover {
+.btn-copy-v3:hover {
     transform: scale(1.1);
-}
-
-.account-holder {
-    font-size: 0.85rem;
-    color: #777;
-    margin-bottom: 20px;
-    text-align: left;
-    padding-left: 5px;
 }
 
 /* Animations */
