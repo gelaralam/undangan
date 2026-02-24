@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Init Countdown
-            const targetDate = new Date("March 15, 2026 09:00:00").getTime();
+            const targetDate = new Date("April 11, 2026 09:00:00").getTime();
             initCountdown(targetDate);
 
             // Init Animations

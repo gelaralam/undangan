@@ -282,10 +282,10 @@ body {
     position: absolute;
     bottom: 5%;
     /* Slightly lower for better integration */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 480px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     z-index: 10;
 }
 
