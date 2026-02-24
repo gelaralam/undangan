@@ -186,17 +186,15 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 100dvh;
     min-height: 100dvh;
-    /* Handle mobile address bar */
+    padding: 80px 0;
+    /* Space for content */
     display: flex;
     align-items: center;
-    /* Center the quote vertically now */
     justify-content: center;
     position: relative;
     color: white;
     text-align: center;
-    overflow: hidden;
 }
 
 .hero-bg {
