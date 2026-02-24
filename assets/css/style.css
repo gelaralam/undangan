@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #1a2a6c;
+    --primary-color: #001b34;
     --secondary-color: #f6d365;
     --accent-color: #b21f1f;
-    --text-dark: #333;
+    --text-dark: #f4f4f4;
     --text-light: #f4f4f4;
-    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.3);
     --font-heading: 'Playfair Display', serif;
     --font-title: 'Valley Personal Use', cursive;
@@ -28,7 +28,8 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
-    background: #fdfbfb;
+    background: #001b34;
+    /* R:0 G:27 B:52 */
     -webkit-text-size-adjust: 100%;
     /* Prevent font scaling in landscape on iOS */
     -webkit-tap-highlight-color: transparent;
@@ -96,7 +97,7 @@ body {
     height: 100%;
     height: 100dvh;
     /* Handle mobile address bar */
-    background-color: #333;
+    background-color: #001b34;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -207,6 +208,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('../images/main-bg.jpg') !important;
+    background-color: #001b34 !important;
+    /* R:0 G:27 B:52 */
     background-size: 100% auto !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
@@ -221,7 +224,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(6, 18, 45, 0.8) 70%, rgba(6, 18, 45, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 27, 52, 0) 0%, rgba(0, 27, 52, 0.4) 30%, rgba(0, 27, 52, 0.8) 70%, rgba(0, 27, 52, 1) 100%);
     pointer-events: none;
 }
 
