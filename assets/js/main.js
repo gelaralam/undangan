@@ -110,6 +110,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Init Animations
             initAnimations();
+
+            // Bottom Nav Interaction
+            document.querySelectorAll('.nav-item').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Nav Audio Toggle
+            const navAudio = document.getElementById('nav-audio');
+            if (navAudio) {
+                navAudio.addEventListener('click', () => {
+                    if (music && music.toggleMusic) {
+                        music.toggleMusic();
+                    }
+                });
+            }
+
+            // nav QR (placeholder)
+            const navQR = document.getElementById('nav-qr');
+            if (navQR) {
+                navQR.addEventListener('click', () => {
+                    alert('Fitur Buku Tamu (QR Code) bakal segera hadir!');
+                });
+            }
         });
     } else {
         console.error("Missing critical elements:", { openBtn, overlay, mainContent });
