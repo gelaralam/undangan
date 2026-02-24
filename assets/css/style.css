@@ -110,10 +110,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* Align remaining content to bottom */
+    /* Force content to the bottom */
     height: 100%;
-    padding: 40px 40px 80px;
-    /* Increase bottom padding to sit above ornaments */
+    padding: 20px 20px 5px;
+    /* Almost no bottom padding to push as low as possible */
     text-align: center;
     color: white;
 }
@@ -150,25 +150,31 @@ body {
 }
 
 .recipient {
-    margin: 10px 0;
+    margin: 2px 0;
 }
 
 .recipient p {
-    margin-bottom: 1px;
-    font-size: 0.85rem;
+    margin-bottom: 0px;
+    font-size: 0.75rem;
+}
+
+.recipient h3 {
+    font-size: 1.1rem !important;
+    /* Shrink the guest name box slightly */
 }
 
 .error-note {
-    font-size: 0.7rem;
-    margin: 8px 0;
+    font-size: 0.6rem;
+    margin: 2px 0;
     opacity: 0.8;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .btn-primary {
-    margin-top: 5px;
-    padding: 10px 25px;
-    font-size: 0.9rem;
+    margin-top: 3px;
+    padding: 8px 20px;
+    /* Slightly smaller button */
+    font-size: 0.8rem;
 }
 
 /* Hero Section */
