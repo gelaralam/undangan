@@ -284,15 +284,16 @@ body {
     /* Positioned below the text in the photo */
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: calc(100% - 24px);
+    max-width: 480px;
     z-index: 10;
 }
 
 .timer {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    /* Tighter gap for the boxes */
+    gap: 6px;
+    /* Slightly tighter gap for mobile safety */
 }
 
 .timer-item {
@@ -324,6 +325,25 @@ body {
     color: #001b34;
     /* Blue text for labels too */
     text-transform: uppercase;
+}
+
+/* Extra safety for very small phones */
+@media (max-width: 360px) {
+    .timer {
+        gap: 4px;
+    }
+
+    .timer-item {
+        padding: 6px 2px;
+    }
+
+    .timer-item span {
+        font-size: 1.1rem;
+    }
+
+    .timer-item-label {
+        font-size: 0.55rem;
+    }
 }
 
 /* Gallery */
