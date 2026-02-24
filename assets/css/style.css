@@ -222,12 +222,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/main-bg.jpg');
-    background-size: cover;
-    background-position: center top;
     z-index: -1;
 }
 
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Desktop default */
+    display: block;
+}
 
 .hero-content h1 {
     font-family: var(--font-title);
@@ -392,11 +396,15 @@ body {
     }
 
     .hero-bg {
-        background-size: contain !important;
-        /* Forces 1:1 view without cropping */
-        background-position: center 10% !important;
-        /* Center the uncropped photo */
-        background-repeat: no-repeat !important;
+        background: none !important;
+        /* Remove CSS background */
+    }
+
+    .hero-bg img {
+        height: auto !important;
+        object-fit: contain !important;
+        /* Forces 1:1 uncropped view */
+        margin: 0 auto;
     }
 
     .overlay-content h1 {
