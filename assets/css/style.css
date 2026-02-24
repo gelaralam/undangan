@@ -195,6 +195,8 @@ body {
     position: relative;
     color: white;
     text-align: center;
+    background-color: #0d0d0d;
+    /* Blend with photo tones */
 }
 
 .hero-bg {
@@ -379,7 +381,14 @@ body {
 @media (max-width: 768px) {
     .hero {
         align-items: flex-start !important;
-        padding-top: 60dvh !important;
+        padding-top: calc(100vw + 20px) !important;
+        /* Start text exactly after the square image */
+    }
+
+    .hero-bg {
+        background-size: 100% auto !important;
+        background-position: top center !important;
+        transform-origin: top center;
     }
 
     .overlay-content h1 {
