@@ -181,6 +181,15 @@ const initAnimations = () => {
 // --- Main Execution ---
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Baca nama tamu dari URL parameter segera saat halaman dimuat
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to');
+    if (guestName) {
+        const guestEl = document.getElementById('guest-name');
+        if (guestEl) {
+            guestEl.innerText = decodeURIComponent(guestName);
+        }
+    }
     const openBtn = document.getElementById('btn-open-invitation');
     const overlay = document.getElementById('overlay-door');
     const mainContent = document.getElementById('main-content');
@@ -364,10 +373,8 @@ Wassalamualaikum Wr. Wb,
                 });
             }
 
-            // SHARE BUTTON SECURITY 
-            const urlParams = new URLSearchParams(window.location.search);
+            // SHARE BUTTON SECURITY
             const isAdmin = urlParams.get('admin') === 'kasepuhan';
-            const guestName = urlParams.get('to');
 
             // Set initial state: Hide share unless secret admin key is present
             if (navShare) {
@@ -375,14 +382,6 @@ Wassalamualaikum Wr. Wb,
                     navShare.style.display = 'flex'; // Show for admin
                 } else {
                     navShare.style.display = 'none'; // Hide for everyone else
-                }
-            }
-
-            // Handle guest name display
-            if (guestName) {
-                const guestEl = document.getElementById('guest-name');
-                if (guestEl) {
-                    guestEl.innerText = decodeURIComponent(guestName);
                 }
             }
         });
