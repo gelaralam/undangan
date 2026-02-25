@@ -109,6 +109,17 @@ const initLightbox = () => {
     };
 
     galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        if (img) {
+            // If image is already cached/loaded
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
+            }
+        }
         item.addEventListener('click', () => openLightbox(index));
     });
 

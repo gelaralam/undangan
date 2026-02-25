@@ -455,30 +455,30 @@ body {
     overflow: hidden;
     cursor: pointer;
     position: relative;
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-.gallery-item.animated {
-    animation: fadeInScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes fadeInScale {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Placeholder while loading */
+    content-visibility: auto;
+    /* Browser optimization */
+    contain: paint;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-item img[loading] {
+    opacity: 0;
+}
+
+.gallery-item img.loaded {
+    opacity: 1;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .gallery-footer {
