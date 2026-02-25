@@ -431,9 +431,36 @@
                     </svg>
                     <span>Audio</span>
                 </a>
+                <a href="javascript:void(0)" class="nav-item" id="nav-share">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Share</span>
+                </a>
             </div>
         </nav>
     </main>
+
+    <!-- WhatsApp Generator Modal -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="modal-close">&times;</span>
+            <div class="generator-header">
+                <h3>WhatsApp Link Generator</h3>
+                <p>Bagikan undangan dengan nama tamu yang rapi.</p>
+            </div>
+            <div class="generator-body">
+                <div class="form-group">
+                    <input type="text" id="share-guest-name" placeholder="Nama Tamu (Contoh: Bapak Budi)">
+                </div>
+                <button id="btn-share-whatsapp" class="btn-submit" style="background-color: #25d366;">
+                    Bagikan ke WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
 
     <audio id="bg-music" src="assets/images/musik-undangan.mp3" loop></audio>
     <script src="assets/js/main.js"></script>

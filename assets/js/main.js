@@ -264,23 +264,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // nav QR
-            const navQR = document.getElementById('nav-qr');
-            if (navQR) {
-                navQR.addEventListener('click', () => {
-                    alert('Fitur Buku Tamu (QR Code) bakal segera hadir!');
+            // Share Modal Logic
+            const navShare = document.getElementById('nav-share');
+            const shareModal = document.getElementById('share-modal');
+            const modalClose = document.querySelector('.modal-close');
+            const btnShareWA = document.getElementById('btn-share-whatsapp');
+
+            if (navShare && shareModal && modalClose) {
+                navShare.addEventListener('click', () => {
+                    shareModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+
+                modalClose.addEventListener('click', () => {
+                    shareModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+
+                window.addEventListener('click', (e) => {
+                    if (e.target === shareModal) {
+                        shareModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
                 });
             }
-        });
-    }
 
-    // Extract guest name from URL if present
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('to');
-    if (guestName) {
-        const guestEl = document.getElementById('guest-name');
-        if (guestEl) {
-            guestEl.innerText = decodeURIComponent(guestName);
-        }
+            if (btnShareWA) {
+                btnShareWA.addEventListener('click', () => {
+                    const guestName = document.getElementById('share-guest-name').value || 'Nama Tamu';
+                    const encodedName = encodeURIComponent(guestName);
+                    const currentUrl = window.location.origin + window.location.pathname;
+                    const inviteLink = `${currentUrl}?to=${encodedName}`;
+
+                    const message = `Yth. Bapak/Ibu/Saudara/i
+*${guestName}*
+Di Tempat
+---------------------------
+_Assalamualaikum Wr. Wb._
+Dengan segala kerendahan hati,
+kami mengundang Bapak/Ibu/Saudara/i dan teman-teman untuk menghadiri acara Syukuran Khitanan,
+=============
+*Line Pasifik Antarbakti*
+=============
+*♥️Save The Date♥️*
+----------------
+_Pada_
+📅 Tanggal : *11-12 April 2026*
+🕘 Pukul : *10:00 s/d Selesai*
+_Tempat_ 
+🏠 *Kasepuhan Gelaralam*
+-----------------
+Untuk detail acaranya, bisa kunjungi link berikut.👇
+
+${inviteLink}
+
+Kami sangat berharap Bapak/Ibu/Saudara/i dan teman-teman dapat menghadiri acara tersebut,
+--------------------------------
+Wassalamualaikum Wr. Wb,
+🙏 Hormat Kami,
+*Keluarga Abah Ugi Sugriana Rakasiwi*`;
+
+                    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+                    window.open(waUrl, '_blank');
+                });
+            }
+
+            // Extract guest name from URL if present
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('to');
+            if (guestName) {
+                const guestEl = document.getElementById('guest-name');
+                if (guestEl) {
+                    guestEl.innerText = decodeURIComponent(guestName);
+                }
+            }
+        });
     }
 });
