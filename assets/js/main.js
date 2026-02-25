@@ -237,13 +237,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
 
                     const name = document.getElementById('rsvp-name').value;
-                    const message = document.getElementById('rsvp-message').value;
+                    const message = document.getElementById('rsvp-message').value || 'Tidak ada ucapan.';
                     const presence = document.getElementById('rsvp-presence').value;
 
-                    // Create entry element
+                    // Owner WhatsApp Number (from Gift section)
+                    const ownerPhone = '62816237035';
+
+                    // Format WhatsApp Message
+                    const waMessage = `*Konfirmasi Kehadiran - Undangan Khitanan*\n\n` +
+                        `*Nama:* ${name}\n` +
+                        `*Status:* ${presence}\n` +
+                        `*Ucapan:* ${message}\n\n` +
+                        `Terima kasih!`;
+
+                    const waUrl = `https://api.whatsapp.com/send?phone=${ownerPhone}&text=${encodeURIComponent(waMessage)}`;
+
+                    // Create local entry for immediate feedback
                     const entry = document.createElement('div');
                     entry.className = 'rsvp-entry';
-
                     const statusClass = presence.toLowerCase().includes('tidak') ? 'tidak-hadir' : 'hadir';
 
                     entry.innerHTML = `
@@ -251,16 +262,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="entry-name">${name}</span>
                             <span class="entry-status ${statusClass}">${presence}</span>
                         </div>
-                        <div class="entry-message">${(message || 'Tidak ada ucapan.').replace(/\n/g, '<br>')}</div>
+                        <div class="entry-message">${message.replace(/\n/g, '<br>')}</div>
                     `;
 
-                    // Add to list (at the top)
+                    // Add to list
                     rsvpList.insertBefore(entry, rsvpList.firstChild);
 
                     // Reset form
                     rsvpForm.reset();
 
-                    alert('Terima kasih! Konfirmasi Anda telah terkirim.');
+                    // Open WhatsApp
+                    window.open(waUrl, '_blank');
+
+                    alert('Konfirmasi Anda telah tercatat. Anda akan diarahkan ke WhatsApp untuk mengirim pesan ke penyelenggara.');
                 });
             }
 
