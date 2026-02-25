@@ -233,48 +233,69 @@ document.addEventListener('DOMContentLoaded', () => {
             const rsvpList = document.getElementById('rsvp-list');
 
             if (rsvpForm && rsvpList) {
-                rsvpForm.addEventListener('submit', (e) => {
+                const API_BASE = 'https://api.gelaralam.id/api/public';
+
+                // Load existing RSVPs
+                const loadRSVPs = async () => {
+                    try {
+                        const res = await fetch(`${API_BASE}/rsvp`);
+                        const data = await res.json();
+                        rsvpList.innerHTML = '';
+                        if (data && data.length > 0) {
+                            data.forEach(item => {
+                                const entry = document.createElement('div');
+                                entry.className = 'rsvp-entry';
+                                const statusClass = item.presence.toLowerCase().includes('tidak') ? 'tidak-hadir' : 'hadir';
+                                entry.innerHTML = `
+                                    <div class="entry-header">
+                                        <span class="entry-name">${item.name}</span>
+                                        <span class="entry-status ${statusClass}">${item.presence}</span>
+                                    </div>
+                                    <div class="entry-message">${(item.message || 'Tidak ada ucapan.').replace(/\n/g, '<br>')}</div>
+                                `;
+                                rsvpList.appendChild(entry);
+                            });
+                        } else {
+                            rsvpList.innerHTML = '<p style="opacity: 0.6; text-align: center;">Belum ada konfirmasi. Jadilah yang pertama!</p>';
+                        }
+                    } catch (err) {
+                        console.error('Failed to load RSVPs:', err);
+                    }
+                };
+
+                loadRSVPs();
+
+                rsvpForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
                     const name = document.getElementById('rsvp-name').value;
-                    const message = document.getElementById('rsvp-message').value || 'Tidak ada ucapan.';
+                    const message = document.getElementById('rsvp-message').value || '';
                     const presence = document.getElementById('rsvp-presence').value;
+                    const submitBtn = rsvpForm.querySelector('button[type="submit"]');
 
-                    // Owner WhatsApp Number (from Gift section)
-                    const ownerPhone = '62816237035';
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Mengirim...';
 
-                    // Format WhatsApp Message
-                    const waMessage = `*Konfirmasi Kehadiran - Undangan Khitanan*\n\n` +
-                        `*Nama:* ${name}\n` +
-                        `*Status:* ${presence}\n` +
-                        `*Ucapan:* ${message}\n\n` +
-                        `Terima kasih!`;
+                    try {
+                        const res = await fetch(`${API_BASE}/rsvp`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ name, message, presence })
+                        });
 
-                    const waUrl = `https://api.whatsapp.com/send?phone=${ownerPhone}&text=${encodeURIComponent(waMessage)}`;
-
-                    // Create local entry for immediate feedback
-                    const entry = document.createElement('div');
-                    entry.className = 'rsvp-entry';
-                    const statusClass = presence.toLowerCase().includes('tidak') ? 'tidak-hadir' : 'hadir';
-
-                    entry.innerHTML = `
-                        <div class="entry-header">
-                            <span class="entry-name">${name}</span>
-                            <span class="entry-status ${statusClass}">${presence}</span>
-                        </div>
-                        <div class="entry-message">${message.replace(/\n/g, '<br>')}</div>
-                    `;
-
-                    // Add to list
-                    rsvpList.insertBefore(entry, rsvpList.firstChild);
-
-                    // Reset form
-                    rsvpForm.reset();
-
-                    // Open WhatsApp
-                    window.open(waUrl, '_blank');
-
-                    alert('Konfirmasi Anda telah tercatat. Anda akan diarahkan ke WhatsApp untuk mengirim pesan ke penyelenggara.');
+                        if (res.ok) {
+                            rsvpForm.reset();
+                            alert('Terima kasih! Konfirmasi kehadiran Anda telah diterima.');
+                            loadRSVPs(); // Refresh the list
+                        } else {
+                            alert('Maaf, ada masalah. Silakan coba lagi.');
+                        }
+                    } catch (err) {
+                        alert('Gagal mengirim. Periksa koneksi internet Anda.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Kirim';
+                    }
                 });
             }
 
