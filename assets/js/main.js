@@ -45,31 +45,28 @@ const initCountdown = (targetDate) => {
 
 // Music Module
 const initMusic = () => {
-    const musicBtn = document.getElementById('music-toggle');
     const audio = document.getElementById('bg-music');
-    const icon = document.getElementById('music-icon');
+    const navAudio = document.getElementById('nav-audio');
     let isPlaying = false;
 
-    if (!musicBtn || !audio || !icon) return { toggleMusic: () => { } };
+    if (!audio || !navAudio) return { toggleMusic: () => { } };
 
     const toggleMusic = () => {
         if (isPlaying) {
             audio.pause();
-            icon.innerText = '🔇';
+            navAudio.classList.remove('playing');
+            navAudio.querySelector('span').innerText = 'Audio: Off';
         } else {
             audio.play().catch(err => {
-                console.warn("Autoplay was prevented or audio failed:", err);
-                isPlaying = false;
-                icon.innerText = '🔇';
+                console.warn("Autoplay prevented:", err);
             });
-            icon.innerText = '🎵';
+            navAudio.classList.add('playing');
+            navAudio.querySelector('span').innerText = 'Audio: On';
         }
         isPlaying = !isPlaying;
     };
 
-    musicBtn.addEventListener('click', toggleMusic);
-
-    return { toggleMusic };
+    return { toggleMusic, getIsPlaying: () => isPlaying };
 };
 
 // Lightbox Module
