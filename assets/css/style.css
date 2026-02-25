@@ -1058,18 +1058,28 @@ main {
 
 .info-content.overlay-links {
     position: absolute;
-    bottom: 45px;
-    /* Adjusted to align with the black bar in the image */
-    left: 45%;
-    /* Shifted slightly to the left to balance with the logo on the right */
+    bottom: 32px;
+    /* Adjusted to sit in the middle of the black bar */
+    left: 42%;
+    /* Adjusted to leave space for the logo on the right */
     transform: translateX(-50%);
     width: auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* Left align text */
-    gap: 3px;
+    flex-direction: row;
+    /* Single line */
+    align-items: center;
+    gap: 12px;
+    /* Spacing between INFORMASI, email, and web */
     z-index: 10;
+    white-space: nowrap;
+}
+
+.info-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .contact-link {
@@ -1077,8 +1087,8 @@ main {
     text-decoration: none;
     transition: opacity 0.3s ease;
     font-weight: 400;
-    font-size: 0.8rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-size: 0.75rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .contact-link:hover {
