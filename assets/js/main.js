@@ -337,6 +337,10 @@ Wassalamualaikum Wr. Wb,
                 if (guestEl) {
                     guestEl.innerText = decodeURIComponent(guestName);
                 }
+                // HIDE SHARE BUTTON FOR GUESTS
+                if (navShare) {
+                    navShare.style.display = 'none';
+                }
             }
         });
     }
