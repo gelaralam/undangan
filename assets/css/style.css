@@ -1058,18 +1058,17 @@ main {
 
 .info-content.overlay-links {
     position: absolute;
-    bottom: 32px;
-    /* Adjusted to sit in the middle of the black bar */
-    left: 42%;
-    /* Adjusted to leave space for the logo on the right */
+    bottom: 12px;
+    /* Lowered significantly to hit the black bar */
+    left: 45%;
+    /* Adjusted for better alignment with logo on the right */
     transform: translateX(-50%);
     width: auto;
     display: flex;
     flex-direction: row;
-    /* Single line */
     align-items: center;
-    gap: 12px;
-    /* Spacing between INFORMASI, email, and web */
+    gap: 15px;
+    /* Increased spacing between the two links */
     z-index: 10;
     white-space: nowrap;
 }
@@ -1087,7 +1086,7 @@ main {
     text-decoration: none;
     transition: opacity 0.3s ease;
     font-weight: 400;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
