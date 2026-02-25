@@ -1055,7 +1055,7 @@ main {
     width: 100%;
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: #fff;
 }
