@@ -1029,18 +1029,15 @@ main {
 }
 
 .footer-bottom {
-    margin-top: 10px;
-    /* Reduced to move upwards */
+    margin-top: 0;
     padding-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
 }
 
 .footer-image-container {
     width: 100%;
-    margin-bottom: 0;
+    position: relative;
+    /* For absolute positioning of links */
 }
 
 .footer-img {
@@ -1048,20 +1045,6 @@ main {
     max-width: 100%;
     height: auto;
     display: block;
-}
-
-.footer-info-bar {
-    background-color: #000;
-    width: 100%;
-    padding: 25px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    position: relative;
-    margin-top: -50px;
-    /* Aggressive move upwards to overlap image */
-    z-index: 10;
 }
 
 .info-content {
@@ -1073,11 +1056,26 @@ main {
     /* Spacing between lines */
 }
 
+.info-content.overlay-links {
+    position: absolute;
+    bottom: 20px;
+    /* Position over the bottom of the image */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+}
+
 .info-label {
     font-weight: 800;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
-    opacity: 0.9;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     margin-bottom: 2px;
 }
 
@@ -1095,7 +1093,8 @@ main {
     text-decoration: none;
     transition: opacity 0.3s ease;
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .contact-link:hover {
