@@ -1254,3 +1254,82 @@ main {
         font-size: 1.2rem;
     }
 }
+
+/* ===== DESKTOP: Tampilan Mengikuti HP ===== */
+@media (min-width: 769px) {
+
+    /* Body background untuk area di luar wrapper */
+    body {
+        background: #000d1a;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Overlay pintu: dibatasi lebar HP */
+    .overlay {
+        width: 430px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .overlay.open {
+        transform: translateX(-50%) translateY(-100%);
+    }
+
+    /* Music player ikut lebar wrapper */
+    .music-player {
+        right: calc(50% - 430px / 2 + 20px);
+    }
+
+    /* Main content wrapper: lebar HP */
+    #main-content {
+        width: 430px;
+        position: relative;
+    }
+
+    /* Hero bg: ikut lebar wrapper */
+    .hero-bg {
+        background-size: 430px auto !important;
+    }
+
+    /* Bottom nav: dibatasi sesuai wrapper */
+    .bottom-nav {
+        width: 430px;
+        max-width: 430px;
+    }
+
+    /* Container: tidak perlu 1200px lagi */
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    /* Guest items: satu kolom saja seperti di HP */
+    .guest-items {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    /* Footer image full width dalam wrapper */
+    .footer-img {
+        width: 100%;
+    }
+
+    /* Countdown timer: sesuaikan untuk lebar kecil */
+    .timer {
+        gap: 4px;
+    }
+
+    .timer-item {
+        min-width: 0;
+    }
+
+    .timer-item span {
+        font-size: 1.4rem;
+    }
+
+    /* Gallery grid maks sama seperti container wrapper */
+    .gallery-grid {
+        max-width: 100%;
+    }
+}
