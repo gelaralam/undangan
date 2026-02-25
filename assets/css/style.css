@@ -1028,6 +1028,44 @@ main {
     padding-bottom: 60px;
 }
 
+.footer-bottom {
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+
+.contact-info {
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.contact-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.contact-link:hover {
+    opacity: 0.8;
+}
+
+.separator {
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+.footer-image-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .hero {
