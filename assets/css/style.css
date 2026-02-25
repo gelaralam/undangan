@@ -179,10 +179,9 @@ body {
 }
 
 .btn-primary {
-    margin-top: 2px;
-    padding: 6px 15px;
-    /* Even smaller button for tight fit */
-    font-size: 0.75rem;
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 0.95rem;
 }
 
 /* Hero Section */
