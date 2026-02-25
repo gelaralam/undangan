@@ -769,10 +769,10 @@ body {
 
 /* Gift Area (Relocated in Footer) */
 .gift-area {
-    margin-top: 50px;
-    margin-bottom: 60px;
+    margin-top: 30px;
+    margin-bottom: 40px;
     text-align: left;
-    max-width: 600px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -788,13 +788,13 @@ body {
 }
 
 .gift-title-v3 img {
-    max-width: 180px;
+    max-width: 140px;
     height: auto;
     display: block;
 }
 
 .gift-category-v3 {
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .cat-header-v3 {
@@ -805,7 +805,7 @@ body {
 }
 
 .cat-title-v3 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: #fbc02d !important;
     /* Golden Yellow */
@@ -813,8 +813,8 @@ body {
 }
 
 .cat-note-v3 {
-    font-size: 1rem;
-    margin-bottom: 25px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
     opacity: 0.9;
     line-height: 1.4;
 }
@@ -823,10 +823,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #fbc02d;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #fbc02d;
     /* Golden Underline */
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .gift-item-v3.no-border {
@@ -846,7 +846,7 @@ body {
 }
 
 .bank-name-v3 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 800;
 }
 
@@ -855,12 +855,12 @@ body {
 }
 
 .holder-name-v3 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
 .address-text-v3 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 
