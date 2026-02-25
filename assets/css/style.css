@@ -850,8 +850,12 @@ body {
     font-weight: 800;
 }
 
-.acc-num-v3 {
+.acc-num-v3,
+.acc-num-v4 {
     margin-left: 5px;
+    color: #00d4ff;
+    /* Bright Light Blue */
+    font-weight: 700;
 }
 
 .holder-name-v3 {
