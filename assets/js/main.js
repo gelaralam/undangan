@@ -329,17 +329,25 @@ Wassalamualaikum Wr. Wb,
                 });
             }
 
-            // Extract guest name from URL if present
+            // SHARE BUTTON SECURITY 
             const urlParams = new URLSearchParams(window.location.search);
+            const isAdmin = urlParams.get('admin') === 'kasepuhan';
             const guestName = urlParams.get('to');
+
+            // Set initial state: Hide share unless secret admin key is present
+            if (navShare) {
+                if (isAdmin) {
+                    navShare.style.display = 'flex'; // Show for admin
+                } else {
+                    navShare.style.display = 'none'; // Hide for everyone else
+                }
+            }
+
+            // Handle guest name display
             if (guestName) {
                 const guestEl = document.getElementById('guest-name');
                 if (guestEl) {
                     guestEl.innerText = decodeURIComponent(guestName);
-                }
-                // HIDE SHARE BUTTON FOR GUESTS
-                if (navShare) {
-                    navShare.style.display = 'none';
                 }
             }
         });
