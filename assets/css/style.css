@@ -1029,7 +1029,8 @@ main {
 }
 
 .footer-bottom {
-    margin-top: 40px;
+    margin-top: 10px;
+    /* Reduced to move upwards */
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -1039,7 +1040,6 @@ main {
 
 .footer-image-container {
     width: 100%;
-    margin-top: 20px;
     margin-bottom: 0;
 }
 
@@ -1053,7 +1053,7 @@ main {
 .footer-info-bar {
     background-color: #000;
     width: 100%;
-    padding: 15px 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1062,16 +1062,19 @@ main {
 
 .info-content {
     display: flex;
+    flex-direction: column;
+    /* Stacked */
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 8px;
+    /* Spacing between lines */
 }
 
 .info-label {
     font-weight: 800;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
     opacity: 0.9;
+    margin-bottom: 2px;
 }
 
 .footer-logo-circle {
@@ -1088,7 +1091,7 @@ main {
     text-decoration: none;
     transition: opacity 0.3s ease;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .contact-link:hover {
