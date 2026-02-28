@@ -719,14 +719,8 @@ body {
     padding-right: 5px;
 }
 
-.rsvp-entry {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #a85863;
-    text-align: left;
-}
+
+/* Styles for individual RSVP entries are defined below, after .rsvp-list */
 
 .rsvp-entry .entry-header {
     display: flex;
@@ -765,7 +759,113 @@ body {
     font-style: italic;
     color: #555;
     word-break: break-word;
+    margin-top: 6px;
 }
+
+/* RSVP Entry: Avatar + Body layout */
+.rsvp-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: white;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    border-left: 4px solid #a85863;
+    animation: rsvpFadeIn 0.4s ease both;
+}
+
+@keyframes rsvpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.entry-avatar {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    color: white;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.entry-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.entry-time {
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* Loading state */
+.rsvp-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 30px 0;
+    color: #777;
+    font-size: 0.95rem;
+}
+
+.rsvp-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(168, 88, 99, 0.2);
+    border-top-color: #a85863;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Empty / Error state */
+.rsvp-empty {
+    text-align: center;
+    padding: 30px 0;
+    color: #777;
+    opacity: 0.8;
+}
+
+.rsvp-empty p {
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+}
+
+/* Success message (inline after form submit) */
+.rsvp-success-msg {
+    background: #e6f4ea;
+    color: #1e7e34;
+    border: 1px solid #a8ddb9;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 12px;
+    animation: rsvpFadeIn 0.4s ease;
+}
+
 
 /* Gift Area (Relocated in Footer) */
 .gift-area {

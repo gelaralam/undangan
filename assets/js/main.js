@@ -250,31 +250,91 @@ document.addEventListener('DOMContentLoaded', () => {
             if (rsvpForm && rsvpList) {
                 const API_BASE = 'https://api.gelaralam.id/api/public';
 
+                // Avatar warna berdasarkan huruf pertama nama
+                const avatarColors = [
+                    '#a85863', '#5e6ea8', '#5ea887', '#a8875e',
+                    '#7a5ea8', '#a85e8e', '#5e8ea8', '#8ea85e'
+                ];
+                const getAvatarColor = (name) => {
+                    const idx = name.charCodeAt(0) % avatarColors.length;
+                    return avatarColors[idx];
+                };
+                const getInitials = (name) => {
+                    return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+                };
+
+                // Waktu relatif
+                const timeAgo = (dateStr) => {
+                    if (!dateStr) return '';
+                    const date = new Date(dateStr);
+                    const seconds = Math.floor((Date.now() - date) / 1000);
+                    if (seconds < 60) return 'baru saja';
+                    const minutes = Math.floor(seconds / 60);
+                    if (minutes < 60) return `${minutes} menit lalu`;
+                    const hours = Math.floor(minutes / 60);
+                    if (hours < 24) return `${hours} jam lalu`;
+                    const days = Math.floor(hours / 24);
+                    return `${days} hari lalu`;
+                };
+
                 // Load existing RSVPs
                 const loadRSVPs = async () => {
+                    // Tampilkan loading spinner
+                    rsvpList.innerHTML = `
+                        <div class="rsvp-loading">
+                            <div class="rsvp-spinner"></div>
+                            <span>Memuat ucapan & doa...</span>
+                        </div>`;
                     try {
                         const res = await fetch(`${API_BASE}/rsvp`);
+                        if (!res.ok) throw new Error(`HTTP ${res.status}`);
                         const data = await res.json();
                         rsvpList.innerHTML = '';
+
                         if (data && data.length > 0) {
-                            data.forEach(item => {
+                            // Urutkan: terbaru di atas
+                            const sorted = [...data].sort((a, b) =>
+                                new Date(b.created_at) - new Date(a.created_at)
+                            );
+                            sorted.forEach((item, i) => {
                                 const entry = document.createElement('div');
                                 entry.className = 'rsvp-entry';
-                                const statusClass = item.presence.toLowerCase().includes('tidak') ? 'tidak-hadir' : 'hadir';
+                                entry.style.animationDelay = `${i * 60}ms`;
+                                const isHadir = !item.presence.toLowerCase().includes('tidak');
+                                const statusClass = isHadir ? 'hadir' : 'tidak-hadir';
+                                const statusIcon = isHadir ? '✅' : '❌';
+                                const color = getAvatarColor(item.name || 'A');
+                                const initials = getInitials(item.name || '?');
+                                const ago = timeAgo(item.created_at);
+                                const msg = (item.message || '').trim();
+
                                 entry.innerHTML = `
-                                    <div class="entry-header">
-                                        <span class="entry-name">${item.name}</span>
-                                        <span class="entry-status ${statusClass}">${item.presence}</span>
+                                    <div class="entry-avatar" style="background:${color}">${initials}</div>
+                                    <div class="entry-body">
+                                        <div class="entry-header">
+                                            <span class="entry-name">${item.name}</span>
+                                            <span class="entry-status ${statusClass}">${statusIcon} ${item.presence}</span>
+                                        </div>
+                                        ${msg ? `<div class="entry-message">💬 ${msg.replace(/\n/g, '<br>')}</div>` : ''}
+                                        ${ago ? `<div class="entry-time">${ago}</div>` : ''}
                                     </div>
-                                    <div class="entry-message">${(item.message || 'Tidak ada ucapan.').replace(/\n/g, '<br>')}</div>
                                 `;
                                 rsvpList.appendChild(entry);
                             });
                         } else {
-                            rsvpList.innerHTML = '<p style="opacity: 0.6; text-align: center;">Belum ada konfirmasi. Jadilah yang pertama!</p>';
+                            rsvpList.innerHTML = `
+                                <div class="rsvp-empty">
+                                    <div style="font-size:2.5rem">🤲</div>
+                                    <p>Belum ada konfirmasi. Jadilah yang pertama!</p>
+                                </div>`;
                         }
                     } catch (err) {
                         console.error('Failed to load RSVPs:', err);
+                        rsvpList.innerHTML = `
+                            <div class="rsvp-empty">
+                                <div style="font-size:2rem">⚠️</div>
+                                <p style="color:#c0392b">Gagal memuat data. Periksa koneksi internet.</p>
+                            </div>`;
                     }
                 };
 
@@ -283,10 +343,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 rsvpForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
-                    const name = document.getElementById('rsvp-name').value;
-                    const message = document.getElementById('rsvp-message').value || '';
+                    const name = document.getElementById('rsvp-name').value.trim();
+                    const message = document.getElementById('rsvp-message').value.trim() || '';
                     const presence = document.getElementById('rsvp-presence').value;
                     const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+
+                    if (!name) { alert('Nama tidak boleh kosong.'); return; }
+                    if (!presence) { alert('Pilih konfirmasi kehadiran terlebih dahulu.'); return; }
 
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Mengirim...';
@@ -300,10 +363,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (res.ok) {
                             rsvpForm.reset();
-                            alert('Terima kasih! Konfirmasi kehadiran Anda telah diterima.');
+                            // Reset select ke default
+                            document.getElementById('rsvp-presence').selectedIndex = 0;
+                            // Tampilkan pesan sukses inline
+                            const successMsg = document.createElement('div');
+                            successMsg.className = 'rsvp-success-msg';
+                            successMsg.textContent = '🎉 Terima kasih! Konfirmasi kehadiran Anda telah diterima.';
+                            rsvpForm.parentNode.insertBefore(successMsg, rsvpForm.nextSibling);
+                            setTimeout(() => successMsg.remove(), 4000);
                             loadRSVPs(); // Refresh the list
                         } else {
-                            alert('Maaf, ada masalah. Silakan coba lagi.');
+                            const body = await res.json().catch(() => ({}));
+                            alert(body.message || 'Maaf, ada masalah. Silakan coba lagi.');
                         }
                     } catch (err) {
                         alert('Gagal mengirim. Periksa koneksi internet Anda.');
