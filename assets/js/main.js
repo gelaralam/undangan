@@ -346,6 +346,38 @@ document.addEventListener('DOMContentLoaded', () => {
                                 statusSpan.textContent = `${statusIcon} ${item.presence}`;
                                 header.appendChild(statusSpan);
 
+                                // Add Delete Button for Admin
+                                if (isAdmin) {
+                                    const deleteBtn = document.createElement('button');
+                                    deleteBtn.className = 'entry-delete-btn';
+                                    deleteBtn.innerHTML = '🗑️';
+                                    deleteBtn.title = 'Hapus Komentar';
+                                    deleteBtn.onclick = async () => {
+                                        if (confirm(`Hapus komentar dari "${item.name}"?`)) {
+                                            try {
+                                                const res = await fetch(`${API_BASE}/rsvp/${item.id}`, {
+                                                    method: 'DELETE',
+                                                    headers: { 'X-Secret-Key': 'kasepuhan' }
+                                                });
+                                                if (res.ok) {
+                                                    entry.style.opacity = '0';
+                                                    entry.style.transform = 'translateX(20px)';
+                                                    setTimeout(() => {
+                                                        entry.remove();
+                                                        loadRSVPs(); // Refresh to update counts
+                                                    }, 3000);
+                                                } else {
+                                                    alert('Gagal menghapus komentar.');
+                                                }
+                                            } catch (err) {
+                                                console.error('Delete error:', err);
+                                                alert('Gagal menghapus. Periksa koneksi.');
+                                            }
+                                        }
+                                    };
+                                    header.appendChild(deleteBtn);
+                                }
+
                                 body.appendChild(header);
 
                                 if (msg) {
