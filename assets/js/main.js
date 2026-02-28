@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rsvpList = document.getElementById('rsvp-list');
 
             if (rsvpForm && rsvpList) {
-                const API_BASE = 'https://api.gelaralam.id/api/public';
+                const API_BASE = 'https://data.gelaralam.id/api/public';
 
                 // Avatar warna berdasarkan huruf pertama nama
                 const avatarColors = [
@@ -289,6 +289,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         const res = await fetch(`${API_BASE}/rsvp`);
                         if (!res.ok) throw new Error(`HTTP ${res.status}`);
                         const data = await res.json();
+
+                        // Update counter
+                        const items = Array.isArray(data) ? data : [];
+                        const countHadir = items.filter(i => i.presence === 'Hadir').length;
+                        const countTidak = items.filter(i => i.presence === 'Tidak Hadir').length;
+                        if (document.getElementById('count-hadir')) document.getElementById('count-hadir').textContent = countHadir;
+                        if (document.getElementById('count-tidak')) document.getElementById('count-tidak').textContent = countTidak;
+
                         rsvpList.innerHTML = '';
 
                         if (data && data.length > 0) {

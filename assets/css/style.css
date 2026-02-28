@@ -614,9 +614,50 @@ body {
 
 /* RSVP Section */
 .rsvp-section {
-    background-color: rgb(198, 173, 133);
+    background-color: #c6ad85;
     padding: 60px 0;
     color: #333;
+}
+
+.rsvp-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    background: rgba(0, 27, 52, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.counter-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #001b34;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.counter-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #666;
+}
+
+.counter-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .rsvp-card {
