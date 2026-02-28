@@ -183,11 +183,17 @@ const initAnimations = () => {
 document.addEventListener('DOMContentLoaded', () => {
     // Baca nama tamu dari URL parameter segera saat halaman dimuat
     const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('to');
-    if (guestName) {
+    const guestNameEncoded = urlParams.get('to');
+    if (guestNameEncoded) {
         const guestEl = document.getElementById('guest-name');
         if (guestEl) {
-            guestEl.innerText = decodeURIComponent(guestName);
+            try {
+                // Decode Base64 -> nama tamu asli
+                guestEl.innerText = decodeURIComponent(atob(guestNameEncoded));
+            } catch (e) {
+                // Fallback: jika bukan Base64 valid, tampilkan apa adanya
+                guestEl.innerText = decodeURIComponent(guestNameEncoded);
+            }
         }
     }
     const openBtn = document.getElementById('btn-open-invitation');
@@ -336,7 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnShareWA) {
                 btnShareWA.addEventListener('click', () => {
                     const guestName = document.getElementById('share-guest-name').value || 'Nama Tamu';
-                    const encodedName = encodeURIComponent(guestName);
+                    // Encode nama tamu ke Base64 agar tidak mudah diedit di URL
+                    const encodedName = btoa(encodeURIComponent(guestName));
                     const currentUrl = window.location.origin + window.location.pathname;
                     const inviteLink = `${currentUrl}?to=${encodedName}`;
 
