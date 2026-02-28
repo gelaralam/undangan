@@ -308,7 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const entry = document.createElement('div');
                                 entry.className = 'rsvp-entry';
                                 entry.style.animationDelay = `${i * 60}ms`;
-                                const isHadir = !item.presence.toLowerCase().includes('tidak');
+
+                                const isHadir = (item.presence || '').toLowerCase().includes('tidak') ? false : true;
                                 const statusClass = isHadir ? 'hadir' : 'tidak-hadir';
                                 const statusIcon = isHadir ? '✅' : '❌';
                                 const color = getAvatarColor(item.name || 'A');
@@ -316,17 +317,55 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const ago = timeAgo(item.created_at);
                                 const msg = (item.message || '').trim();
 
-                                entry.innerHTML = `
-                                    <div class="entry-avatar" style="background:${color}">${initials}</div>
-                                    <div class="entry-body">
-                                        <div class="entry-header">
-                                            <span class="entry-name">${item.name}</span>
-                                            <span class="entry-status ${statusClass}">${statusIcon} ${item.presence}</span>
-                                        </div>
-                                        ${msg ? `<div class="entry-message">💬 ${msg.replace(/\n/g, '<br>')}</div>` : ''}
-                                        ${ago ? `<div class="entry-time">${ago}</div>` : ''}
-                                    </div>
-                                `;
+                                // Constructing the entry safely
+                                const avatar = document.createElement('div');
+                                avatar.className = 'entry-avatar';
+                                avatar.style.background = color;
+                                avatar.textContent = initials;
+                                entry.appendChild(avatar);
+
+                                const body = document.createElement('div');
+                                body.className = 'entry-body';
+
+                                const header = document.createElement('div');
+                                header.className = 'entry-header';
+
+                                const nameSpan = document.createElement('span');
+                                nameSpan.className = 'entry-name';
+                                nameSpan.textContent = item.name;
+                                header.appendChild(nameSpan);
+
+                                const statusSpan = document.createElement('span');
+                                statusSpan.className = `entry-status ${statusClass}`;
+                                statusSpan.textContent = `${statusIcon} ${item.presence}`;
+                                header.appendChild(statusSpan);
+
+                                body.appendChild(header);
+
+                                if (msg) {
+                                    const messageDiv = document.createElement('div');
+                                    messageDiv.className = 'entry-message';
+                                    messageDiv.textContent = '💬 ';
+
+                                    // Handle line breaks safely
+                                    const lines = msg.split('\n');
+                                    lines.forEach((line, index) => {
+                                        messageDiv.appendChild(document.createTextNode(line));
+                                        if (index < lines.length - 1) {
+                                            messageDiv.appendChild(document.createElement('br'));
+                                        }
+                                    });
+                                    body.appendChild(messageDiv);
+                                }
+
+                                if (ago) {
+                                    const timeDiv = document.createElement('div');
+                                    timeDiv.className = 'entry-time';
+                                    timeDiv.textContent = ago;
+                                    body.appendChild(timeDiv);
+                                }
+
+                                entry.appendChild(body);
                                 rsvpList.appendChild(entry);
                             });
                         } else {
