@@ -187,7 +187,7 @@ body {
 /* Hero Section */
 .hero {
     min-height: 100dvh;
-    padding: 57dvh 0 80px;
+    padding: 45dvh 0 80px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
