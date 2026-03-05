@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #001b34;
+    --primary-color: #364531;
     --secondary-color: #f6d365;
     --accent-color: #b21f1f;
     --text-dark: #f4f4f4;
@@ -28,8 +28,8 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
-    background: #001b34;
-    /* R:0 G:27 B:52 */
+    background: #364531;
+    /* R:54 G:69 B:49 */
     -webkit-text-size-adjust: 100%;
     /* Prevent font scaling in landscape on iOS */
     -webkit-tap-highlight-color: transparent;
@@ -206,9 +206,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/main-bg.jpg') !important;
-    background-color: #001b34 !important;
-    /* R:0 G:27 B:52 */
+    background-color: #364531 !important;
+    /* R:54 G:69 B:49 */
     background-size: 100% auto !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
@@ -223,7 +222,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 27, 52, 0) 0%, rgba(0, 27, 52, 0.4) 30%, rgba(0, 27, 52, 0.8) 70%, rgba(0, 27, 52, 1) 100%);
+    background: linear-gradient(to bottom, rgba(54, 69, 49, 0) 0%, rgba(54, 69, 49, 0.4) 30%, rgba(54, 69, 49, 0.8) 70%, rgba(54, 69, 49, 1) 100%);
     pointer-events: none;
 }
 
@@ -313,7 +312,7 @@ body {
 .timer-item span {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #001b34;
+    color: #364531;
     /* Blue text as requested */
     line-height: 1;
     margin-bottom: 2px;
@@ -322,7 +321,7 @@ body {
 .timer-item-label {
     font-size: 0.65rem;
     font-weight: 700;
-    color: #001b34;
+    color: #364531;
     /* Blue text for labels too */
     text-transform: uppercase;
 }
@@ -359,7 +358,7 @@ body {
 
 /* Schedule Section */
 .schedule-section {
-    background: linear-gradient(rgba(0, 15, 30, 0.5), rgba(0, 15, 30, 0.5)), url('../images/event-bg.jpg?v=1.1') center top/contain;
+    background: linear-gradient(rgba(54, 69, 49, 0.5), rgba(54, 69, 49, 0.5)), url('../images/event-bg.jpg?v=1.1') center top/contain;
     background-repeat: no-repeat;
 }
 
@@ -406,7 +405,7 @@ body {
     display: inline-block;
     background-color: #c6ad85;
     /* Tan color from nav */
-    color: #001b34;
+    color: #364531;
     padding: 6px 30px;
     border-radius: 50px;
     font-weight: 700;
@@ -663,7 +662,7 @@ body {
 .counter-number {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #001b34;
+    color: #364531;
     line-height: 1;
     margin-bottom: 4px;
 }
@@ -695,7 +694,7 @@ body {
     margin-top: 0;
     margin-bottom: 5px;
     /* Reduced from 10px */
-    color: #001b34 !important;
+    color: #364531 !important;
     /* Theme Blue */
     text-align: center !important;
     display: block !important;
@@ -1128,7 +1127,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: #001b34;
+    color: #364531;
     /* Theme Blue */
     flex: 1;
     transition: transform 0.2s ease;
