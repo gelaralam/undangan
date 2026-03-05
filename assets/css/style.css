@@ -97,7 +97,7 @@ body {
     height: 100%;
     height: 100dvh;
     /* Handle mobile address bar */
-    background-color: #001b34;
+    background-color: #364531;
     background-image: url('../images/hero-bg.jpg');
     background-size: contain;
     background-position: center;
@@ -646,7 +646,7 @@ body {
     align-items: center;
     gap: 30px;
     margin-bottom: 25px;
-    background: rgba(0, 27, 52, 0.05);
+    background: rgba(54, 69, 49, 0.05);
     padding: 15px;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -1137,7 +1137,7 @@ body {
     margin-bottom: 2px;
     width: 20px;
     height: 20px;
-    stroke: #001b34;
+    stroke: #364531;
     /* Blue icons as requested */
 }
 
@@ -1155,7 +1155,7 @@ body {
 /* --- Footer Styles --- */
 .footer {
     padding: 80px 0 120px;
-    background-color: #001b34;
+    background-color: #364531;
     color: white;
 }
 
@@ -1369,7 +1369,7 @@ main {
 }
 
 .modal-content {
-    background-color: #001b34;
+    background-color: #364531;
     margin: 15% auto;
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
