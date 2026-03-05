@@ -98,7 +98,7 @@ body {
     height: 100dvh;
     /* Handle mobile address bar */
     background-color: #364531;
-    background-image: url('../images/hero-bg.jpg');
+    background-image: url('../images/hero-bg.jpg?v=1.1');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -206,7 +206,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/main-bg.jpg') !important;
+    background-image: url('../images/main-bg.jpg?v=1.1') !important;
     background-color: #364531 !important;
     /* R:54 G:69 B:49 */
     background-size: 100% auto !important;
