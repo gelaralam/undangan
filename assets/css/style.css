@@ -98,7 +98,7 @@ body {
     height: 100dvh;
     /* Handle mobile address bar */
     background-color: #364531;
-    background-image: url('../images/hero-bg.jpg?v=1.2');
+    background-image: url('../images/hero-bg.jpg?v=2.0');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -206,7 +206,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/main-bg.jpg?v=1.2') !important;
+    background-image: url('../images/main-bg.jpg?v=2.0') !important;
     background-color: #364531 !important;
     /* R:54 G:69 B:49 */
     background-size: 100% auto !important;
@@ -348,7 +348,7 @@ body {
 
 /* Schedule Section */
 .schedule-section {
-    background: linear-gradient(rgba(54, 69, 49, 0.5), rgba(54, 69, 49, 0.5)), url('../images/event-bg.jpg?v=1.2') center top/contain;
+    background: linear-gradient(rgba(54, 69, 49, 0.5), rgba(54, 69, 49, 0.5)), url('../images/event-bg.jpg?v=2.0') center top/contain;
     background-repeat: no-repeat;
 }
 
