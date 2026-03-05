@@ -1144,7 +1144,7 @@ body {
 
 /* --- Footer Styles --- */
 .footer {
-    padding: 80px 0 120px;
+    padding: 80px 0 0;
     background-color: #364531;
     color: white;
 }
@@ -1199,7 +1199,7 @@ body {
 
 /* Ensure content doesn't get hidden behind bottom nav */
 main {
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 .footer-bottom {
