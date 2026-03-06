@@ -496,30 +496,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (btnShareWA) {
+                // Fancy Text Converter: A-Z, a-z to Mathematical Script (Unicode)
+                const convertToFancyText = (text) => {
+                    if (!text) return '';
+                    const scripts = {
+                        'A': '𝓐', 'B': '𝓑', 'C': '𝓒', 'D': '𝓓', 'E': '𝓔', 'F': '𝓕', 'G': '𝓖', 'H': '𝓗', 'I': '𝓘', 'J': '𝓙', 'K': '𝓚', 'L': '𝓛', 'M': '𝓜', 'N': '𝓝', 'O': '𝓞', 'P': '𝓟', 'Q': '𝓠', 'R': '𝓡', 'S': '𝓢', 'T': '𝓣', 'U': '𝓤', 'V': '𝓥', 'W': '𝓦', 'X': '𝓧', 'Y': '𝓨', 'Z': '𝓩',
+                        'a': '𝓪', 'b': '𝓫', 'c': '𝓬', 'd': '𝓭', 'e': '𝓮', 'f': '𝓯', 'g': '𝓰', 'h': '𝓱', 'i': '𝓲', 'j': '𝓳', 'k': '𝓴', 'l': '𝓵', 'm': '𝓶', 'n': '𝓷', 'o': '𝓸', 'p': '𝓹', 'q': '𝓺', 'r': '𝓻', 's': '𝓼', 't': '𝓽', 'u': '𝓾', 'v': '𝓿', 'w': '𝔀', 'x': '𝔁', 'y': '𝔂', 'z': '𝔃'
+                    };
+                    return text.split('').map(char => scripts[char] || char).join('');
+                };
+
                 btnShareWA.addEventListener('click', () => {
-                    const guestName = document.getElementById('share-guest-name').value || 'Nama Tamu';
+                    const guestNameInput = document.getElementById('share-guest-name').value || 'Nama Tamu';
                     // Encode nama tamu ke Base64 agar tidak mudah diedit di URL
-                    const encodedName = btoa(encodeURIComponent(guestName));
+                    const encodedName = btoa(encodeURIComponent(guestNameInput));
                     const currentUrl = window.location.origin + window.location.pathname;
                     const inviteLink = `${currentUrl}?to=${encodedName}`;
+
+                    // Convert specific parts to Fancy Text
+                    const guestName = convertToFancyText(guestNameInput);
 
                     const message = `Yth. Bapak/Ibu/Saudara/i
 *${guestName}*
 Di Tempat
 ---------------------------
-_Assalamualaikum Wr. Wb._
+${convertToFancyText('Assalamualaikum Wr. Wb.')}
+${convertToFancyText('Sampurasun!')}
 Dengan segala kerendahan hati,
 kami mengundang Bapak/Ibu/Saudara/i dan teman-teman untuk menghadiri acara Syukuran Khitanan,
 =============
-*Line Pasifik Antarbakti*
+*${convertToFancyText('Line Pasifik Antar Bakti')}*
 =============
-*♥️Save The Date♥️*
+*♥️${convertToFancyText('Save The Date')}*♥️
 ----------------
 _Pada_
 📅 Tanggal : *11-12 April 2026*
 🕘 Pukul : *10:00 s/d Selesai*
 _Tempat_ 
-🏠 *Kasepuhan Gelaralam*
+🏠 *${convertToFancyText('Kasepuhan Gelaralam')}*
 -----------------
 Untuk detail acaranya, bisa kunjungi link berikut.👇
 
@@ -527,9 +541,10 @@ ${inviteLink}
 
 Kami sangat berharap Bapak/Ibu/Saudara/i dan teman-teman dapat menghadiri acara tersebut,
 --------------------------------
-Wassalamualaikum Wr. Wb,
+${convertToFancyText('Wassalamualaikum Wr. Wb,')}
+${convertToFancyText('Rampés!')}
 🙏 Hormat Kami,
-*Keluarga Abah Ugi Sugriana Rakasiwi*`;
+*${convertToFancyText('Keluarga Abah Ugi Sugriana Rakasiwi')}*`;
 
                     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
                     window.open(waUrl, '_blank');
