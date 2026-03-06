@@ -532,7 +532,7 @@ ${convertToFancyText('Syukuran Khitanan,')}
 *❤️${convertToFancyText('Save The Date')}❤️*
 ----------------
 ${convertToFancyText('Pada')}
-📅 Tanggal : *11-12 ${convertToFancyText('April')} 2026*
+📅 Tanggal : *11 ${convertToFancyText('April')} 2026*
 🕘 Pukul : *10:00 s/d Selesai*
 ${convertToFancyText('Tempat')}
 🏠 *${convertToFancyText('Kasepuhan Gelaralam')}*
