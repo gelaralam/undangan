@@ -8,7 +8,6 @@
     --glass-border: rgba(255, 255, 255, 0.3);
     --font-heading: 'Playfair Display', serif;
     --font-title: 'Valley Personal Use', cursive;
-    --font-script: 'Great Vibes', cursive;
     --font-body: 'Inter', sans-serif;
 }
 
@@ -39,14 +38,6 @@ body {
 
 .playfair {
     font-family: var(--font-heading);
-}
-
-.poetic-text,
-.opening-salutation p,
-.hero-content p {
-    font-family: var(--font-script);
-    font-size: 1.4rem !important;
-    line-height: 1.2;
 }
 
 .container {
@@ -999,8 +990,7 @@ body {
 }
 
 .cat-note-v3 {
-    font-family: var(--font-script);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin-bottom: 15px;
     opacity: 0.9;
     line-height: 1.4;
@@ -1177,9 +1167,8 @@ body {
 }
 
 .family-names p {
-    font-family: var(--font-script);
-    font-size: 1.3rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.8;
     margin-bottom: 10px;
     opacity: 0.9;
 }
@@ -1277,9 +1266,8 @@ main {
     color: #fff;
     text-decoration: none;
     transition: opacity 0.3s ease;
-    font-family: var(--font-script);
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 

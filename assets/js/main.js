@@ -516,34 +516,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Convert specific parts to Fancy Text
                     const guestName = convertToFancyText(guestNameInput);
 
-                    const message = `Yth. Bapak/Ibu/Saudara/i
-*${guestName}*
-Di Tempat
----------------------------
-${convertToFancyText('Assalamualaikum Wr. Wb.')}
+                    const message = `${convertToFancyText("Assalamu'alaikum Wr. Wb.")}
 ${convertToFancyText('Sampurasun!')}
-Dengan segala kerendahan hati,
-kami mengundang Bapak/Ibu/Saudara/i dan teman-teman untuk menghadiri acara Syukuran Khitanan,
+${convertToFancyText('Dengan segala kerendahan hati,')}
+${convertToFancyText('kami mengundang Bapak/Ibu/Saudara/i')}
+${convertToFancyText('dan teman-teman untuk menghadiri acara')}
+${convertToFancyText('Syukuran Khitanan,')}
 =============
-*${convertToFancyText('Line Pasifik Antar Bakti')}*
+*Line Pasifik Antar Bakti*
 =============
-*♥️${convertToFancyText('Save The Date')}*♥️
+*❤️${convertToFancyText('Save The Date')}❤️*
 ----------------
-_Pada_
-📅 Tanggal : *11-12 April 2026*
+${convertToFancyText('Pada')}
+📅 Tanggal : *11-12 ${convertToFancyText('April')} 2026*
 🕘 Pukul : *10:00 s/d Selesai*
-_Tempat_ 
+${convertToFancyText('Tempat')}
 🏠 *${convertToFancyText('Kasepuhan Gelaralam')}*
 -----------------
-Untuk detail acaranya, bisa kunjungi link berikut.👇
+${convertToFancyText('Untuk detail acaranya, bisa kunjungi link')}
+${convertToFancyText('berikut. 👇')}
 
 ${inviteLink}
 
-Kami sangat berharap Bapak/Ibu/Saudara/i dan teman-teman dapat menghadiri acara tersebut,
+${convertToFancyText('Kami sangat berharap Bapak/Ibu/Saudara/i')}
+${convertToFancyText('dan teman-teman dapat menghadiri acara')}
+${convertToFancyText('tersebut,')}
 --------------------------------
 ${convertToFancyText('Wassalamualaikum Wr. Wb,')}
 ${convertToFancyText('Rampés!')}
-🙏 Hormat Kami,
+🙏 ${convertToFancyText('Hormat Kami,')}
 *${convertToFancyText('Keluarga Abah Ugi Sugriana Rakasiwi')}*`;
 
                     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
