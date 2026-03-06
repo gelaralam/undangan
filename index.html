@@ -504,6 +504,27 @@
                     Bagikan ke WhatsApp
                 </button>
             </div>
+
+            <div class="generator-divider">
+                <span>Atau</span>
+            </div>
+
+            <div class="generator-bulk">
+                <h4>Import List dari CSV</h4>
+                <p class="bulk-note">Format: Nama, No WhatsApp (628...)</p>
+                <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+                <button id="btn-import-csv" class="btn-bulk">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path
+                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                        </path>
+                    </svg>
+                    Pilih File CSV
+                </button>
+                <div id="bulk-guest-list" class="bulk-list">
+                    <!-- CSV results will appear here -->
+                </div>
+            </div>
         </div>
     </div>
 

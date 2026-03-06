@@ -506,17 +506,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     return text.split('').map(char => scripts[char] || char).join('');
                 };
 
-                btnShareWA.addEventListener('click', () => {
-                    const guestNameInput = document.getElementById('share-guest-name').value || 'Nama Tamu';
+                const generateWAMessage = (guestNameInput) => {
                     // Encode nama tamu ke Base64 agar tidak mudah diedit di URL
                     const encodedName = btoa(encodeURIComponent(guestNameInput));
                     const currentUrl = window.location.origin + window.location.pathname;
                     const inviteLink = `${currentUrl}?to=${encodedName}`;
 
-                    // Convert specific parts to Fancy Text
-                    const guestName = convertToFancyText(guestNameInput);
-
-                    const message = `Yth. Bapak/Ibu/Saudara/i
+                    return `Yth. Bapak/Ibu/Saudara/i
 *${guestNameInput}*
 Di Tempat
 ---------------------------
@@ -550,10 +546,68 @@ ${convertToFancyText('Wassalamualaikum Wr. Wb,')}
 ${convertToFancyText('Rampés!')}
 🙏 ${convertToFancyText('Hormat Kami,')}
 *${convertToFancyText('Keluarga Abah Ugi Sugriana R')}*`;
+                };
 
+                btnShareWA.addEventListener('click', () => {
+                    const guestNameInput = document.getElementById('share-guest-name').value || 'Nama Tamu';
+                    const message = generateWAMessage(guestNameInput);
                     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
                     window.open(waUrl, '_blank');
                 });
+
+                // --- Bulk Import Logic ---
+                const btnImport = document.getElementById('btn-import-csv');
+                const csvInput = document.getElementById('csv-file-input');
+                const bulkList = document.getElementById('bulk-guest-list');
+
+                if (btnImport && csvInput && bulkList) {
+                    btnImport.addEventListener('click', () => csvInput.click());
+
+                    csvInput.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const csvData = event.target.result;
+                            const lines = csvData.split(/\r?\n/);
+                            bulkList.innerHTML = ''; // Clear previous
+
+                            lines.forEach(line => {
+                                if (!line.trim()) return;
+                                // Simple CSV split (handles Name, Phone)
+                                const parts = line.split(',').map(p => p.trim());
+                                const name = parts[0];
+                                const phone = parts[1] || '';
+
+                                if (name) {
+                                    const item = document.createElement('div');
+                                    item.className = 'bulk-guest-item';
+                                    item.innerHTML = `
+                                        <div class="guest-info">
+                                            <span class="guest-name">${name}</span>
+                                            <span class="guest-phone">${phone || 'Tanpa No'}</span>
+                                        </div>
+                                        <button class="btn-share-mini">Bagikan</button>
+                                    `;
+
+                                    item.querySelector('.btn-share-mini').addEventListener('click', () => {
+                                        const msg = generateWAMessage(name);
+                                        // If phone exists, send directly to phone, otherwise just send text
+                                        const cleanPhone = phone.replace(/[^0-9]/g, '');
+                                        const waUrl = cleanPhone
+                                            ? `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(msg)}`
+                                            : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+                                        window.open(waUrl, '_blank');
+                                    });
+
+                                    bulkList.appendChild(item);
+                                }
+                            });
+                        };
+                        reader.readAsText(file);
+                    });
+                }
             }
 
             // SHARE BUTTON SECURITY
