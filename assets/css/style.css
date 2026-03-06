@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #364531;
+    --primary-color: #000000;
     --secondary-color: #f6d365;
     --accent-color: #b21f1f;
     --text-dark: #f4f4f4;
@@ -28,7 +28,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
-    background: #364531;
+    background: #000000;
     /* R:54 G:69 B:49 */
     -webkit-text-size-adjust: 100%;
     /* Prevent font scaling in landscape on iOS */
@@ -56,6 +56,11 @@ body {
 
 .hidden {
     display: none;
+}
+
+.bg-light {
+    background-color: #000000 !important;
+    color: #fff;
 }
 
 /* Glassmorphism Card */
@@ -97,7 +102,7 @@ body {
     height: 100%;
     height: 100dvh;
     /* Handle mobile address bar */
-    background-color: #364531;
+    background-color: #000000;
     background-image: url('../images/hero-bg.jpg?v=2.0');
     background-size: contain;
     background-position: center;
@@ -207,7 +212,7 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('../images/main-bg.jpg?v=2.0') !important;
-    background-color: #364531 !important;
+    background-color: #000000 !important;
     /* R:54 G:69 B:49 */
     background-size: 100% auto !important;
     background-position: top center !important;
@@ -348,7 +353,7 @@ body {
 
 /* Schedule Section */
 .schedule-section {
-    background: linear-gradient(rgba(54, 69, 49, 0.5), rgba(54, 69, 49, 0.5)), url('../images/event-bg.jpg?v=2.0') center top/contain;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/event-bg.jpg?v=2.0') center top/contain;
     background-repeat: no-repeat;
 }
 
@@ -625,9 +630,9 @@ body {
 
 /* RSVP Section */
 .rsvp-section {
-    background-color: #c6ad85;
+    background-color: #000000;
     padding: 60px 0;
-    color: #333;
+    color: #fff;
 }
 
 .rsvp-counter {
@@ -636,10 +641,10 @@ body {
     align-items: center;
     gap: 30px;
     margin-bottom: 25px;
-    background: rgba(54, 69, 49, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     padding: 15px;
     border-radius: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .counter-item {
@@ -652,7 +657,7 @@ body {
 .counter-number {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #364531;
+    color: #fbc02d;
     line-height: 1;
     margin-bottom: 4px;
 }
@@ -662,29 +667,30 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    color: #666;
+    color: #aaa;
 }
 
 .counter-divider {
     width: 1px;
     height: 30px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .rsvp-card {
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 20px;
     backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .rsvp-title {
     margin-top: 0;
     margin-bottom: 5px;
     /* Reduced from 10px */
-    color: #364531 !important;
+    color: #fff !important;
     /* Theme Blue */
     text-align: center !important;
     display: block !important;
@@ -705,11 +711,12 @@ body {
     padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
     font-family: inherit;
     font-size: 0.95rem;
-    color: #333;
+    color: #fff;
     outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .rsvp-section textarea {
@@ -1145,7 +1152,7 @@ body {
 /* --- Footer Styles --- */
 .footer {
     padding: 80px 0 0;
-    background-color: #364531;
+    background-color: #000000;
     color: white;
 }
 
@@ -1359,7 +1366,7 @@ main {
 }
 
 .modal-content {
-    background-color: #364531;
+    background-color: #000000;
     margin: 15% auto;
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1430,7 +1437,7 @@ main {
 
     /* Body background untuk area di luar wrapper */
     body {
-        background: #1a2118;
+        background: #000000;
         display: flex;
         justify-content: center;
     }
