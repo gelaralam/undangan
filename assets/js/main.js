@@ -516,7 +516,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Convert specific parts to Fancy Text
                     const guestName = convertToFancyText(guestNameInput);
 
-                    const message = `${convertToFancyText("Assalamu'alaikum Wr. Wb.")}
+                    const message = `Yth. Bapak/Ibu/Saudara/i
+*${guestNameInput}*
+Di Tempat
+---------------------------
+${convertToFancyText("Assalamu'alaikum Wr. Wb.")}
 ${convertToFancyText('Sampurasun!')}
 ${convertToFancyText('Dengan segala kerendahan hati,')}
 ${convertToFancyText('kami mengundang Bapak/Ibu/Saudara/i')}
