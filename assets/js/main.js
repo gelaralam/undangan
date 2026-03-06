@@ -545,7 +545,7 @@ ${convertToFancyText('tersebut,')}
 ${convertToFancyText('Wassalamualaikum Wr. Wb,')}
 ${convertToFancyText('Rampés!')}
 🙏 ${convertToFancyText('Hormat Kami,')}
-*${convertToFancyText('Keluarga Abah Ugi Sugriana Rakasiwi')}*`;
+*${convertToFancyText('Keluarga Abah Ugi Sugriana R')}*`;
 
                     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
                     window.open(waUrl, '_blank');
