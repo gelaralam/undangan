@@ -735,6 +735,11 @@ body {
     background-position: calc(100% - 15px) center;
 }
 
+.rsvp-section select option {
+    color: #000;
+    background-color: #fff;
+}
+
 .btn-submit {
     width: 100%;
     padding: 15px;
