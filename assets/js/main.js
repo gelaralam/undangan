@@ -570,35 +570,67 @@ ${convertToFancyText('Rampés!')}
                         const reader = new FileReader();
                         reader.onload = (event) => {
                             const csvData = event.target.result;
-                            const lines = csvData.split(/\r?\n/);
+                            const rows = csvData.split(/\r?\n/).filter(line => line.trim() !== '');
                             bulkList.innerHTML = ''; // Clear previous
 
-                            lines.forEach(line => {
-                                if (!line.trim()) return;
-                                // Simple CSV split (handles Name, Phone)
-                                const parts = line.split(',').map(p => p.trim());
+                            if (rows.length === 0) return;
+
+                            // Detect separator: check first line for ; or ,
+                            const firstLine = rows[0];
+                            const separator = firstLine.includes(';') ? ';' : ',';
+
+                            // Determine if first row is a header
+                            let startIdx = 0;
+                            const headerLower = firstLine.toLowerCase();
+                            if (headerLower.includes('nama') || headerLower.includes('whatsapp') || headerLower.includes('phone') || headerLower.includes('no')) {
+                                startIdx = 1;
+                            }
+
+                            rows.slice(startIdx).forEach((line, index) => {
+                                const parts = line.split(separator).map(p => p.trim());
                                 const name = parts[0];
                                 const phone = parts[1] || '';
 
                                 if (name) {
                                     const item = document.createElement('div');
                                     item.className = 'bulk-guest-item';
+                                    item.id = `guest-item-${index}`;
                                     item.innerHTML = `
                                         <div class="guest-info">
                                             <span class="guest-name">${name}</span>
                                             <span class="guest-phone">${phone || 'Tanpa No'}</span>
                                         </div>
-                                        <button class="btn-share-mini">Bagikan</button>
+                                        <div class="guest-actions">
+                                            <span class="sent-badge hidden">Terkirim ✅</span>
+                                            <button class="btn-share-mini">Bagikan</button>
+                                        </div>
                                     `;
 
-                                    item.querySelector('.btn-share-mini').addEventListener('click', () => {
+                                    const btnMini = item.querySelector('.btn-share-mini');
+                                    const badge = item.querySelector('.sent-badge');
+
+                                    btnMini.addEventListener('click', () => {
                                         const msg = generateWAMessage(name);
-                                        // If phone exists, send directly to phone, otherwise just send text
                                         const cleanPhone = phone.replace(/[^0-9]/g, '');
                                         const waUrl = cleanPhone
                                             ? `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(msg)}`
                                             : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
                                         window.open(waUrl, '_blank');
+
+                                        // Mark as sent
+                                        item.classList.add('sent');
+                                        badge.classList.remove('hidden');
+                                        btnMini.innerText = 'Kirim Ulang';
+
+                                        // Strategic "Next Guest" logic
+                                        const nextItem = document.getElementById(`guest-item-${index + 1}`);
+                                        if (nextItem) {
+                                            // Scroll next item into view and highlight it
+                                            nextItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                            nextItem.classList.add('highlight-next');
+                                            setTimeout(() => nextItem.classList.remove('highlight-next'), 2000);
+                                        }
                                     });
 
                                     bulkList.appendChild(item);
