@@ -493,6 +493,83 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.body.style.overflow = 'auto';
                     }
                 });
+
+                // Tab Switching Logic
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                const tabPanes = document.querySelectorAll('.tab-pane');
+
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const target = btn.getAttribute('data-tab');
+
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        tabPanes.forEach(p => p.classList.remove('active'));
+
+                        btn.classList.add('active');
+                        document.getElementById(target).classList.add('active');
+
+                        if (target === 'tab-history') {
+                            renderHistory();
+                        }
+                    });
+                });
+            }
+
+            // --- History Logic ---
+            const saveToHistory = (name, phone) => {
+                const history = JSON.parse(localStorage.getItem('delivery_history') || '[]');
+                const entry = {
+                    name,
+                    phone: phone || 'Tanpa No',
+                    timestamp: new Date().toISOString()
+                };
+                history.unshift(entry); // Newest first
+                localStorage.setItem('delivery_history', JSON.stringify(history.slice(0, 100))); // Keep last 100
+            };
+
+            const renderHistory = () => {
+                const historyList = document.getElementById('delivery-history-list');
+                if (!historyList) return;
+
+                const history = JSON.parse(localStorage.getItem('delivery_history') || '[]');
+                historyList.innerHTML = '';
+
+                if (history.length === 0) {
+                    historyList.innerHTML = '<div class="rsvp-empty"><p>Belum ada riwayat pengiriman.</p></div>';
+                    return;
+                }
+
+                history.forEach(item => {
+                    const date = new Date(item.timestamp);
+                    const timeStr = date.toLocaleString('id-ID', {
+                        day: '2-digit', month: 'short',
+                        hour: '2-digit', minute: '2-digit'
+                    });
+
+                    const div = document.createElement('div');
+                    div.className = 'bulk-guest-item';
+                    div.innerHTML = `
+                        <div class="guest-info">
+                            <span class="guest-name">${item.name}</span>
+                            <span class="guest-phone">${item.phone}</span>
+                            <span class="history-time">${timeStr}</span>
+                        </div>
+                        <div class="guest-actions">
+                            <span class="sent-badge">Terkirim ✅</span>
+                        </div>
+                    `;
+                    historyList.appendChild(div);
+                });
+            };
+
+            const clearHistoryBtn = document.getElementById('btn-clear-history');
+            if (clearHistoryBtn) {
+                clearHistoryBtn.addEventListener('click', () => {
+                    if (confirm('Hapus semua riwayat pengiriman?')) {
+                        localStorage.removeItem('delivery_history');
+                        renderHistory();
+                    }
+                });
             }
 
             if (btnShareWA) {
@@ -553,6 +630,7 @@ ${convertToFancyText('Rampés!')}
                     const message = generateWAMessage(guestNameInput);
                     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
                     window.open(waUrl, '_blank');
+                    saveToHistory(guestNameInput, '');
                 });
 
                 // --- Bulk Import Logic ---
@@ -622,6 +700,9 @@ ${convertToFancyText('Rampés!')}
                                         item.classList.add('sent');
                                         badge.classList.remove('hidden');
                                         btnMini.innerText = 'Kirim Ulang';
+
+                                        // Save to history
+                                        saveToHistory(name, phone);
 
                                         // Strategic "Next Guest" logic
                                         const nextItem = document.getElementById(`guest-item-${index + 1}`);

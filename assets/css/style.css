@@ -1554,6 +1554,69 @@ main {
     transition: all 0.3s ease;
 }
 
+/* Modal Tabs */
+.modal-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: #fbc02d;
+    color: #000;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.history-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.btn-clear {
+    background: none;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: #ff4d4d;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-clear:hover {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: #ff4d4d;
+}
+
+.history-time {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-top: 2px;
+}
+
 
 @media (max-width: 480px) {
     .hero-content h1 {

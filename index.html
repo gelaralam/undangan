@@ -492,43 +492,61 @@
     <div id="share-modal" class="modal">
         <div class="modal-content glass-card">
             <span class="modal-close">&times;</span>
-            <div class="generator-header">
-                <h3>WhatsApp Link Generator</h3>
-                <p>Bagikan undangan dengan nama tamu yang rapi.</p>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="tab-generator">Generator</button>
+                <button class="tab-btn" data-tab="tab-history">Riwayat</button>
             </div>
-            <div class="generator-body">
-                <div class="form-group">
-                    <input type="text" id="share-guest-name" placeholder="Nama Tamu (Contoh: Bapak Budi)">
+            <div id="tab-generator" class="tab-pane active">
+                <div class="generator-header">
+                    <h3>WhatsApp Link Generator</h3>
+                    <p>Bagikan undangan dengan nama tamu yang rapi.</p>
                 </div>
-                <button id="btn-share-whatsapp" class="btn-submit" style="background-color: #25d366;">
-                    Bagikan ke WhatsApp
-                </button>
-            </div>
+                <div class="generator-body">
+                    <div class="form-group">
+                        <input type="text" id="share-guest-name" placeholder="Nama Tamu (Contoh: Bapak Budi)">
+                    </div>
+                    <button id="btn-share-whatsapp" class="btn-submit" style="background-color: #25d366;">
+                        Bagikan ke WhatsApp
+                    </button>
+                </div>
 
-            <div class="generator-divider">
-                <span>Atau</span>
-            </div>
+                <div class="generator-divider">
+                    <span>Atau</span>
+                </div>
 
-            <div class="generator-bulk">
-                <h4>Import List dari CSV</h4>
-                <p class="bulk-note">Format: Nama, No WhatsApp (628...)</p>
-                <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
-                <button id="btn-import-csv" class="btn-bulk">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path
-                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
-                        </path>
-                    </svg>
-                    Pilih File CSV
-                </button>
-                <div id="bulk-guest-list" class="bulk-list">
-                    <!-- CSV results will appear here -->
+                <div class="generator-bulk">
+                    <h4>Import List dari CSV</h4>
+                    <p class="bulk-note">Format: Nama, No WhatsApp (628...)</p>
+                    <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+                    <button id="btn-import-csv" class="btn-bulk">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                            </path>
+                        </svg>
+                        Pilih File CSV
+                    </button>
+                    <div id="bulk-guest-list" class="bulk-list">
+                        <!-- CSV results will appear here -->
+                    </div>
+                </div>
+
+                <div id="tab-history" class="tab-pane">
+                    <div class="generator-header">
+                        <h3>Riwayat Pengiriman</h3>
+                        <p>Daftar undangan yang telah dibagikan.</p>
+                    </div>
+                    <div class="history-controls">
+                        <button id="btn-clear-history" class="btn-clear">Hapus Riwayat</button>
+                    </div>
+                    <div id="delivery-history-list" class="bulk-list">
+                        <!-- History will appear here -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="assets/js/main.js?v=3.0"></script>
+        <script src="assets/js/main.js?v=3.0"></script>
 </body>
 
 </html>
