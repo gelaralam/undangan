@@ -552,6 +552,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 historyList.innerHTML = '<div class="rsvp-loading"><div class="rsvp-spinner"></div><span>Memuat riwayat...</span></div>';
 
+                // Check for legacy local data to migrate
+                const localData = JSON.parse(localStorage.getItem('delivery_history') || '[]');
+
                 try {
                     const res = await fetch(`${API_BASE}/invitation-log`, {
                         headers: { 'X-Secret-Key': 'kasepuhan' }
@@ -561,8 +564,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     historyList.innerHTML = '';
 
+                    // If local data exists, show migration prompt
+                    if (localData.length > 0) {
+                        const migrationBanner = document.createElement('div');
+                        migrationBanner.className = 'rsvp-empty';
+                        migrationBanner.style.background = 'rgba(243, 156, 18, 0.1)';
+                        migrationBanner.style.border = '1px dashed #f39c12';
+                        migrationBanner.style.marginBottom = '15px';
+                        migrationBanner.style.padding = '15px';
+                        migrationBanner.innerHTML = `
+                            <p style="color: #d35400; margin-bottom: 10px;">
+                                <strong>⚠️ Ditemukan ${localData.length} data lama</strong> di perangkat ini yang belum tersimpan di database pusat.
+                            </p>
+                            <button id="btn-migrate-history" class="tab-btn active" style="padding: 8px 15px; background: #f39c12;">
+                                📥 Migrasi Data Sekarang
+                            </button>
+                        `;
+                        historyList.appendChild(migrationBanner);
+
+                        const btnMigrate = migrationBanner.querySelector('#btn-migrate-history');
+                        btnMigrate.addEventListener('click', async () => {
+                            btnMigrate.disabled = true;
+                            btnMigrate.innerText = 'Memindahkan...';
+
+                            let successCount = 0;
+                            const adminName = localStorage.getItem('invitation_admin_name') || 'Admin';
+
+                            for (const item of localData) {
+                                try {
+                                    const mRes = await fetch(`${API_BASE}/invitation-log`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            guest_name: item.name,
+                                            guest_phone: item.phone === 'Tanpa No' ? '' : item.phone,
+                                            admin_name: adminName
+                                        })
+                                    });
+                                    if (mRes.ok) successCount++;
+                                } catch (e) {
+                                    console.error('Migration failed for item:', item, e);
+                                }
+                            }
+
+                            if (successCount > 0) {
+                                localStorage.removeItem('delivery_history');
+                                alert(`🎉 Berhasil memindahkan ${successCount} data ke database pusat!`);
+                                renderHistory(); // Refresh
+                            } else {
+                                alert('Maaf, migrasi gagal. Silakan coba lagi nanti.');
+                                btnMigrate.disabled = false;
+                                btnMigrate.innerText = '📥 Migrasi Data Sekarang';
+                            }
+                        });
+                    }
+
                     if (!history || history.length === 0) {
-                        historyList.innerHTML = '<div class="rsvp-empty"><p>Belum ada riwayat pengiriman.</p></div>';
+                        if (localData.length === 0) {
+                            historyList.innerHTML = '<div class="rsvp-empty"><p>Belum ada riwayat pengiriman.</p></div>';
+                        }
                         return;
                     }
 
