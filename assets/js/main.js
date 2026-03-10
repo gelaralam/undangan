@@ -213,6 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 music.toggleMusic();
             }
 
+            // Dynamic API Base: Use localhost if running locally, otherwise use production
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+            const API_BASE = isLocal
+                ? 'http://127.0.0.1:3000/api/public'
+                : 'https://data.gelaralam.id/api/public';
+
+            console.log(`Using API Base: ${API_BASE}`);
+
             // Init Components
             const targetDate = new Date("April 9, 2026 10:00:00 GMT+0700").getTime();
             initCountdown(targetDate);
@@ -248,13 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const rsvpList = document.getElementById('rsvp-list');
 
             if (rsvpForm && rsvpList) {
-                // Dynamic API Base: Use localhost if running locally, otherwise use production
-                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
-                const API_BASE = isLocal
-                    ? 'http://127.0.0.1:3000/api/public'
-                    : 'https://data.gelaralam.id/api/public';
-
-                console.log(`Using API Base: ${API_BASE}`);
 
                 // Avatar warna berdasarkan huruf pertama nama
                 const avatarColors = [
