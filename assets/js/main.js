@@ -626,16 +626,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
 
-                    history.forEach(item => {
+                    const totalItems = history.length;
+                    history.forEach((item, index) => {
                         const date = new Date(item.created_at);
                         const timeStr = date.toLocaleString('id-ID', {
                             day: '2-digit', month: 'short',
                             hour: '2-digit', minute: '2-digit'
                         });
 
+                        const sequenceNumber = totalItems - index;
+
                         const div = document.createElement('div');
                         div.className = 'bulk-guest-item';
                         div.innerHTML = `
+                            <div class="guest-number" style="min-width: 30px; font-weight: bold; color: #f39c12; border-right: 1px solid #eee; margin-right: 12px; display: flex; align-items: center;">
+                                #${sequenceNumber}
+                            </div>
                             <div class="guest-info">
                                 <span class="guest-name">${item.guest_name}</span>
                                 <span class="guest-phone">${item.guest_phone || 'Tanpa No'}</span>
