@@ -480,6 +480,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 navShare.addEventListener('click', () => {
                     shareModal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
+
+                    // Load remembered admin name
+                    const savedAdmin = localStorage.getItem('invitation_admin_name');
+                    const adminInput = document.getElementById('share-admin-name');
+                    if (savedAdmin && adminInput && !adminInput.value) {
+                        adminInput.value = savedAdmin;
+                    }
                 });
 
                 modalClose.addEventListener('click', () => {
@@ -516,50 +523,76 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // --- History Logic ---
-            const saveToHistory = (name, phone) => {
-                const history = JSON.parse(localStorage.getItem('delivery_history') || '[]');
-                const entry = {
-                    name,
-                    phone: phone || 'Tanpa No',
-                    timestamp: new Date().toISOString()
-                };
-                history.unshift(entry); // Newest first
-                localStorage.setItem('delivery_history', JSON.stringify(history.slice(0, 100))); // Keep last 100
+            const saveToHistory = async (guestName, phone) => {
+                const adminNameInput = document.getElementById('share-admin-name');
+                const adminName = adminNameInput.value.trim() || 'Admin';
+
+                // Remember admin name for next time
+                localStorage.setItem('invitation_admin_name', adminName);
+
+                try {
+                    await fetch(`${API_BASE}/invitation-log`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            guest_name: guestName,
+                            guest_phone: phone || '',
+                            admin_name: adminName
+                        })
+                    });
+                } catch (err) {
+                    console.error('Failed to save history to backend:', err);
+                }
             };
 
-            const renderHistory = () => {
+            const renderHistory = async () => {
                 const historyList = document.getElementById('delivery-history-list');
                 if (!historyList) return;
 
-                const history = JSON.parse(localStorage.getItem('delivery_history') || '[]');
-                historyList.innerHTML = '';
+                historyList.innerHTML = '<div class="rsvp-loading"><div class="rsvp-spinner"></div><span>Memuat riwayat...</span></div>';
 
-                if (history.length === 0) {
-                    historyList.innerHTML = '<div class="rsvp-empty"><p>Belum ada riwayat pengiriman.</p></div>';
-                    return;
-                }
-
-                history.forEach(item => {
-                    const date = new Date(item.timestamp);
-                    const timeStr = date.toLocaleString('id-ID', {
-                        day: '2-digit', month: 'short',
-                        hour: '2-digit', minute: '2-digit'
+                try {
+                    const res = await fetch(`${API_BASE}/invitation-log`, {
+                        headers: { 'X-Secret-Key': 'kasepuhan' }
                     });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const history = await res.json();
 
-                    const div = document.createElement('div');
-                    div.className = 'bulk-guest-item';
-                    div.innerHTML = `
-                        <div class="guest-info">
-                            <span class="guest-name">${item.name}</span>
-                            <span class="guest-phone">${item.phone}</span>
-                            <span class="history-time">${timeStr}</span>
-                        </div>
-                        <div class="guest-actions">
-                            <span class="sent-badge">Terkirim ✅</span>
-                        </div>
-                    `;
-                    historyList.appendChild(div);
-                });
+                    historyList.innerHTML = '';
+
+                    if (!history || history.length === 0) {
+                        historyList.innerHTML = '<div class="rsvp-empty"><p>Belum ada riwayat pengiriman.</p></div>';
+                        return;
+                    }
+
+                    history.forEach(item => {
+                        const date = new Date(item.created_at);
+                        const timeStr = date.toLocaleString('id-ID', {
+                            day: '2-digit', month: 'short',
+                            hour: '2-digit', minute: '2-digit'
+                        });
+
+                        const div = document.createElement('div');
+                        div.className = 'bulk-guest-item';
+                        div.innerHTML = `
+                            <div class="guest-info">
+                                <span class="guest-name">${item.guest_name}</span>
+                                <span class="guest-phone">${item.guest_phone || 'Tanpa No'}</span>
+                                <div style="display: flex; gap: 8px; font-size: 0.8rem; color: #7f8c8d; margin-top: 4px;">
+                                    <span>Oleh: <strong>${item.admin_name}</strong></span>
+                                    <span>• ${timeStr}</span>
+                                </div>
+                            </div>
+                            <div class="guest-actions">
+                                <span class="sent-badge">Terkirim ✅</span>
+                            </div>
+                        `;
+                        historyList.appendChild(div);
+                    });
+                } catch (err) {
+                    console.error('Failed to fetch history:', err);
+                    historyList.innerHTML = '<div class="rsvp-empty"><p style="color:#c0392b">Gagal memuat riwayat.</p></div>';
+                }
             };
 
 
