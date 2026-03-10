@@ -562,15 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            const clearHistoryBtn = document.getElementById('btn-clear-history');
-            if (clearHistoryBtn) {
-                clearHistoryBtn.addEventListener('click', () => {
-                    if (confirm('Hapus semua riwayat pengiriman?')) {
-                        localStorage.removeItem('delivery_history');
-                        renderHistory();
-                    }
-                });
-            }
 
             if (btnShareWA) {
                 // Fancy Text Converter: A-Z, a-z to Mathematical Script (Unicode)
