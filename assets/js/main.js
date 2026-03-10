@@ -219,6 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? 'http://127.0.0.1:3000/api/public'
                 : 'https://data.gelaralam.id/api/public';
 
+            const VERSION = "3.1";
+            console.log(`Current JS Version: ${VERSION}`);
             console.log(`Using API Base: ${API_BASE}`);
 
             // Init Components
