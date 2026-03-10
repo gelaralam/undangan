@@ -181,6 +181,7 @@ const initAnimations = () => {
 // --- Main Execution ---
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Current JS Version: 3.1");
     // Baca nama tamu dari URL parameter segera saat halaman dimuat
     const urlParams = new URLSearchParams(window.location.search);
     const guestNameEncoded = urlParams.get('to');
@@ -219,8 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? 'http://127.0.0.1:3000/api/public'
                 : 'https://data.gelaralam.id/api/public';
 
-            const VERSION = "3.1";
-            console.log(`Current JS Version: ${VERSION}`);
             console.log(`Using API Base: ${API_BASE}`);
 
             // Init Components
